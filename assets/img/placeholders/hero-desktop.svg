@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <radialGradient id="glow" cx="0.72" cy="0.45" r="0.6">
+      <stop offset="0" stop-color="#596F98" stop-opacity=".55"/>
+      <stop offset=".55" stop-color="#2a3350" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#0a0b10" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101219"/>
+      <stop offset="1" stop-color="#07080b"/>
+    </linearGradient>
+    <linearGradient id="sil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3247"/>
+      <stop offset="1" stop-color="#0d0f15"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity=".035"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+  
+    <g opacity="0.9">
+      <ellipse cx="1382.3999999999999" cy="560" rx="95" ry="112.1" fill="url(#sil)"/>
+      <path d="M 1052.3999999999999 1080 C 1062.3999999999999 850, 1172.3999999999999 750, 1312.3999999999999 720
+               L 1327.3999999999999 659.75 L 1437.3999999999999 659.75 L 1452.3999999999999 720
+               C 1592.3999999999999 750, 1702.3999999999999 850, 1712.3999999999999 1080 Z" fill="url(#sil)"/>
+      <ellipse cx="1382.3999999999999" cy="560" rx="95" ry="112.1" fill="none" stroke="#8EA2C8" stroke-opacity=".35" stroke-width="2"/>
+    </g>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="1382.3999999999999" y="291.09999999999997" fill="#8EA2C8" font-size="22.4" letter-spacing="5.76">SUBSTITUIR IMAGEM</text>
+    <text x="1382.3999999999999" y="332.7" fill="#ffffff" fill-opacity=".85" font-size="32">Foto da Hero (desktop)</text>
+    <text x="1382.3999999999999" y="371.09999999999997" fill="#ffffff" fill-opacity=".45" font-size="23.04">1920 × 1080 px</text>
+    <text x="1382.3999999999999" y="406.29999999999995" fill="#ffffff" fill-opacity=".45" font-size="23.04">Dr. à direita, área livre à esquerda para o texto</text>
+  </g>
+</svg>

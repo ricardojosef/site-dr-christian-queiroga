@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125">
+  <defs>
+    <radialGradient id="glow" cx="0.5" cy="0.45" r="0.6">
+      <stop offset="0" stop-color="#596F98" stop-opacity=".55"/>
+      <stop offset=".55" stop-color="#2a3350" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#0a0b10" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101219"/>
+      <stop offset="1" stop-color="#07080b"/>
+    </linearGradient>
+    <linearGradient id="sil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3247"/>
+      <stop offset="1" stop-color="#0d0f15"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity=".035"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="1125" fill="url(#bg)"/>
+  <rect width="900" height="1125" fill="url(#grid)"/>
+  <rect width="900" height="1125" fill="url(#glow)"/>
+  
+    <g opacity="0.9">
+      <ellipse cx="450" cy="579" rx="99.75" ry="117.705" fill="url(#sil)"/>
+      <path d="M 103.5 1125 C 114 883.5, 229.5 778.5, 376.5 747
+               L 392.25 683.7375 L 507.75 683.7375 L 523.5 747
+               C 670.5 778.5, 786 883.5, 796.5 1125 Z" fill="url(#sil)"/>
+      <ellipse cx="450" cy="579" rx="99.75" ry="117.705" fill="none" stroke="#8EA2C8" stroke-opacity=".35" stroke-width="2.1"/>
+    </g>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="450" y="333.89500000000004" fill="#8EA2C8" font-size="18.2" letter-spacing="4.68">SUBSTITUIR IMAGEM</text>
+    <text x="450" y="367.69500000000005" fill="#ffffff" fill-opacity=".85" font-size="26">Retrato — Quem sou eu</text>
+    <text x="450" y="398.89500000000004" fill="#ffffff" fill-opacity=".45" font-size="18.72">900 × 1125 px (4:5)</text>
+    
+  </g>
+</svg>

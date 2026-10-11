@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1200" viewBox="0 0 1080 1200">
+  <defs>
+    <radialGradient id="glow" cx="0.5" cy="0.45" r="0.6">
+      <stop offset="0" stop-color="#596F98" stop-opacity=".55"/>
+      <stop offset=".55" stop-color="#2a3350" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#0a0b10" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101219"/>
+      <stop offset="1" stop-color="#07080b"/>
+    </linearGradient>
+    <linearGradient id="sil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3247"/>
+      <stop offset="1" stop-color="#0d0f15"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity=".035"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1200" fill="url(#bg)"/>
+  <rect width="1080" height="1200" fill="url(#grid)"/>
+  <rect width="1080" height="1200" fill="url(#glow)"/>
+  
+    <g opacity="0.9">
+      <ellipse cx="540" cy="524" rx="123.5" ry="145.73" fill="url(#sil)"/>
+      <path d="M 111 1200 C 124 901, 267 771, 449 732
+               L 468.5 653.675 L 611.5 653.675 L 631 732
+               C 813 771, 956 901, 969 1200 Z" fill="url(#sil)"/>
+      <ellipse cx="540" cy="524" rx="123.5" ry="145.73" fill="none" stroke="#8EA2C8" stroke-opacity=".35" stroke-width="2.6"/>
+    </g>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="540" y="221.46999999999997" fill="#8EA2C8" font-size="22.4" letter-spacing="5.76">SUBSTITUIR IMAGEM</text>
+    <text x="540" y="263.07" fill="#ffffff" fill-opacity=".85" font-size="32">Foto da Hero (mobile)</text>
+    <text x="540" y="301.46999999999997" fill="#ffffff" fill-opacity=".45" font-size="23.04">1080 × 1200 px</text>
+    <text x="540" y="336.66999999999996" fill="#ffffff" fill-opacity=".45" font-size="23.04">retrato, rosto no terço superior</text>
+  </g>
+</svg>
