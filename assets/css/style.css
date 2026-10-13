@@ -294,6 +294,9 @@ body.show-guides .guide-toggle__dot { background: var(--blue-light); box-shadow:
 .chip__num { font-family: var(--font-serif); font-size: 2.4rem; line-height: 1; color: var(--white); }
 .chip__plus { font-family: var(--font-serif); font-size: 1.6rem; color: var(--blue-light); }
 .chip__label { width: 100%; font-size: 0.8rem; color: var(--muted); }
+.chip__title { display: flex; align-items: center; gap: 10px; width: 100%; font-family: var(--font-serif); font-size: 1.55rem; line-height: 1.15; color: var(--white); margin-bottom: 4px; }
+.chip__live { width: 8px; height: 8px; flex: none; border-radius: 50%; background: #7fd8a6; box-shadow: 0 0 0 0 rgba(127, 216, 166, 0.6); animation: live 2s infinite; }
+@keyframes live { 70% { box-shadow: 0 0 0 10px rgba(127, 216, 166, 0); } 100% { box-shadow: 0 0 0 0 rgba(127, 216, 166, 0); } }
 .chip--stars .stars { width: 100%; }
 .stars { color: #c7d3ec; letter-spacing: 3px; font-size: 0.95rem; }
 .chip:nth-child(2) { margin-right: 60px; }

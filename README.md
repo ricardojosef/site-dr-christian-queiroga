@@ -23,7 +23,7 @@ Cada seção tem uma caixa tracejada "Orientação" explicando o que escrever al
 | `hero-desktop.svg` | Fundo da hero (desktop) | 1920 × 1080 px, Dr. à direita |
 | `hero-mobile.svg` | Topo da hero no celular | 1080 × 1200 px |
 | `sobre-retrato.svg` | Quem sou eu | 900 × 1125 px (4:5) |
-| `timeline-01…05.svg` | Linha do tempo | 1200 × 900 px (4:3) |
+| `timeline-01…04.svg` | Linha do tempo | 1200 × 900 px (4:3) |
 | `quadro-01…07.svg` | Imagem que segue o mouse em "Quadros atendidos" | 800 × 1000 px |
 | `consultorio.svg` | Onde atendo | 1200 × 800 px (3:2) |
 

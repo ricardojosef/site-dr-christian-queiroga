@@ -153,10 +153,12 @@ const WHATSAPP_NUMBER = '5500000000000';
   function countUp() {
     $$('[data-count]').forEach((el) => {
       const end = +el.dataset.count;
-      const obj = { n: 0 };
+      const obj = { n: +el.dataset.from || 0 };
+      // data-plain: sem separador de milhar (ex.: anos)
+      const format = (n) => ('plain' in el.dataset ? String(Math.round(n)) : Math.round(n).toLocaleString('pt-BR'));
       gsap.to(obj, {
         n: end, duration: 2.2, ease: 'power3.out',
-        onUpdate: () => { el.textContent = Math.round(obj.n).toLocaleString('pt-BR'); },
+        onUpdate: () => { el.textContent = format(obj.n); },
       });
     });
   }
