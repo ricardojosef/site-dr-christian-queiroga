@@ -5,7 +5,10 @@ Landing page estática (HTML + CSS + JS, sem build). Abra `index.html` com um se
 ## Estrutura
 
 ```
-index.html               conteúdo de todas as seções
+index.html                     versão principal (escura)
+index-claro.html               versão clara com elementos odontológicos (usa style.css + claro.css)
+quadros-atendidos-versoes.html 2 alternativas para a seção "Quadros atendidos"
+assets/css/claro.css           camada de estilos da versão clara
 assets/css/style.css     estilos (cores em :root)
 assets/js/main.js        animações GSAP, preloader, formulário
 assets/img/              logos

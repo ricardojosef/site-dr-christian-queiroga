@@ -57,12 +57,11 @@ const WHATSAPP_NUMBER = '5500000000000';
   /* ---------------- Estados iniciais da hero ---------------- */
   const heroWords = $$('.hero__title .word');
   gsap.set(heroWords, { yPercent: 115 });
-  gsap.set(['.hero__logo', '.hero__subtitle', '.hero__actions > *', '.hero__copy .guide'], { autoAlpha: 0, y: 30 });
+  gsap.set(['.hero__logo', '.hero__place', '.hero__subtitle', '.hero__actions > *', '.hero__copy .guide'], { autoAlpha: 0, y: 30 });
   gsap.set('.chip', { autoAlpha: 0, y: 40, scale: 0.95 });
   gsap.set('.hero__bg', { scale: 1.18 });
   gsap.set('.hero__mobile-img', { clipPath: 'inset(0 0 100% 0)' });
   gsap.set('.hero__mobile-img img', { scale: 1.25 });
-  gsap.set('.nav', { yPercent: -160 });
   gsap.set('.hero__scroll', { autoAlpha: 0 });
 
   /* ---------------- Preloader: logo se preenchendo ---------------- */
@@ -139,8 +138,8 @@ const WHATSAPP_NUMBER = '5500000000000';
     tl.to('.hero__bg', { scale: 1, duration: 2.4 }, 0)
       .to('.hero__mobile-img', { clipPath: 'inset(0 0 0% 0)', duration: 1.4, ease: 'expo.inOut' }, 0)
       .to('.hero__mobile-img img', { scale: 1, duration: 2 }, 0)
-      .to('.nav', { yPercent: 0, duration: 1.2 }, 0.3)
       .to('.hero__logo', { autoAlpha: 1, y: 0 }, 0.25)
+      .to('.hero__place', { autoAlpha: 1, y: 0 }, 0.32)
       .to(heroWords, { yPercent: 0, stagger: 0.07 }, 0.35)
       .to('.hero__subtitle', { autoAlpha: 1, y: 0 }, 0.8)
       .to('.hero__actions > *', { autoAlpha: 1, y: 0, stagger: 0.1 }, 0.9)
@@ -168,8 +167,13 @@ const WHATSAPP_NUMBER = '5500000000000';
     yPercent: 12, ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
   });
-  gsap.to('.hero__inner', {
-    yPercent: -12, opacity: 0.2, ease: 'none',
+  // Opacidade só no texto: opacity < 1 num ancestral dos cards anularia o backdrop-filter (blur) deles
+  gsap.to('.hero__copy', {
+    yPercent: -10, opacity: 0.2, ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'center center', end: 'bottom top', scrub: true },
+  });
+  gsap.to('.hero__chips', {
+    yPercent: -30, ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'center center', end: 'bottom top', scrub: true },
   });
 
@@ -193,15 +197,20 @@ const WHATSAPP_NUMBER = '5500000000000';
     });
   }
 
-  /* ---------------- Header: esconde ao descer, mostra ao subir ---------------- */
+  /* ---------------- Header: oculto na hero, aparece a partir da segunda seção ---------------- */
   const header = $('#header');
+  const secondSection = $('.hero ~ section');
   ScrollTrigger.create({
-    start: 0, end: 'max',
-    onUpdate: (self) => {
-      const y = self.scroll();
-      header.classList.toggle('is-scrolled', y > 40);
-      if (header.classList.contains('menu-open')) return;
-      header.classList.toggle('is-hidden', self.direction === 1 && y > 400);
+    trigger: secondSection,
+    start: 'top 70%',
+    end: 'max',
+    onToggle: (self) => {
+      header.classList.toggle('is-hidden', !self.isActive);
+      header.classList.toggle('is-scrolled', self.isActive);
+      if (!self.isActive) {
+        header.classList.remove('menu-open');
+        $('#navBurger').setAttribute('aria-expanded', 'false');
+      }
     },
   });
 
@@ -329,27 +338,49 @@ const WHATSAPP_NUMBER = '5500000000000';
     const pImg = $('img', preview);
     $$('.tlist__item').forEach((it) => { const i = new Image(); i.src = it.dataset.img; });
 
-    gsap.set(preview, { xPercent: -50, yPercent: -50 });
+    gsap.set(preview, { xPercent: -50, yPercent: -50, autoAlpha: 0, scale: 0.6 });
     const px = gsap.quickTo(preview, 'x', { duration: 0.6, ease: 'power3' });
     const py = gsap.quickTo(preview, 'y', { duration: 0.6, ease: 'power3' });
     const pr = gsap.quickTo(preview, 'rotation', { duration: 0.8, ease: 'power3' });
+    const pointer = { x: -1, y: -1 };
     let lastX = 0;
+    let visible = false;
 
+    const show = (item) => {
+      if (pImg.getAttribute('src') !== item.dataset.img) {
+        pImg.src = item.dataset.img;
+        gsap.fromTo(pImg, { scale: 1.2 }, { scale: 1, duration: 0.8, ease: 'expo.out', overwrite: true });
+      }
+      if (visible) return;
+      visible = true;
+      // posiciona no cursor antes de aparecer, para não "voar" de onde estava
+      gsap.set(preview, { x: pointer.x + 160, y: pointer.y });
+      gsap.to(preview, { autoAlpha: 1, scale: 1, duration: 0.5, ease: 'expo.out', overwrite: 'auto' });
+    };
+    const hide = () => {
+      if (!visible) return;
+      visible = false;
+      gsap.to(preview, { autoAlpha: 0, scale: 0.6, duration: 0.3, ease: 'power3.out', overwrite: 'auto' });
+    };
+    // Com scroll o conteúdo passa por baixo do mouse parado e o mouseleave não dispara:
+    // conferimos o que está sob o cursor a cada scroll.
+    const syncWithPointer = () => {
+      const el = pointer.x >= 0 ? document.elementFromPoint(pointer.x, pointer.y) : null;
+      const item = el && el.closest('.tlist__item');
+      if (item && list.contains(item)) show(item);
+      else hide();
+    };
+
+    window.addEventListener('mousemove', (e) => { pointer.x = e.clientX; pointer.y = e.clientY; }, { passive: true });
     list.addEventListener('mousemove', (e) => {
       px(e.clientX + 160); py(e.clientY);
       pr(gsap.utils.clamp(-12, 12, (e.clientX - lastX) * 0.6));
       lastX = e.clientX;
     });
-    $$('.tlist__item').forEach((item) => {
-      item.addEventListener('mouseenter', () => {
-        if (pImg.getAttribute('src') !== item.dataset.img) {
-          pImg.src = item.dataset.img;
-          gsap.fromTo(pImg, { scale: 1.2 }, { scale: 1, duration: 0.8, ease: 'expo.out' });
-        }
-        gsap.to(preview, { autoAlpha: 1, scale: 1, duration: 0.5, ease: 'expo.out' });
-      });
-    });
-    list.addEventListener('mouseleave', () => gsap.to(preview, { autoAlpha: 0, scale: 0.6, duration: 0.4, ease: 'power3.out' }));
+    $$('.tlist__item').forEach((item) => item.addEventListener('mouseenter', () => show(item)));
+    list.addEventListener('mouseleave', hide);
+    window.addEventListener('scroll', () => { if (visible || list.matches(':hover')) syncWithPointer(); }, { passive: true });
+    ScrollTrigger.create({ trigger: '#tratamentos', start: 'top bottom', end: 'bottom top', onLeave: hide, onLeaveBack: hide });
   }
 
   /* ---------------- Depoimentos: marquee infinito ---------------- */
@@ -415,20 +446,6 @@ const WHATSAPP_NUMBER = '5500000000000';
     $$('a, button, summary, .tlist__item, .pill, input, select, .tcard').forEach((el) => {
       el.addEventListener('mouseenter', () => cursor.classList.add('is-hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('is-hover'));
-    });
-
-    // Botões magnéticos
-    $$('.magnetic').forEach((el) => {
-      const xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3' });
-      const yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3' });
-      el.addEventListener('mousemove', (e) => {
-        const r = el.getBoundingClientRect();
-        xTo((e.clientX - r.left - r.width / 2) * 0.3);
-        yTo((e.clientY - r.top - r.height / 2) * 0.4);
-      });
-      el.addEventListener('mouseleave', () => {
-        gsap.to(el, { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.4)' });
-      });
     });
 
     // Cards com inclinação 3D + luz seguindo o mouse

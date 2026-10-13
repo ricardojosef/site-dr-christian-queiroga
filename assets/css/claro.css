@@ -1,0 +1,260 @@
+/* =========================================================
+   Versão clara — camada sobre style.css (usar com body.theme-light)
+   Mesma paleta (azul #596F98 / #50587E) e tipografia; base branca
+   e elementos que remetem à odontologia.
+   ========================================================= */
+
+.theme-light {
+  --bg: #f6f8fc;
+  --bg-2: #edf1f8;
+  --bg-3: #ffffff;
+  --ink: #151b2c;
+  /* em style.css "--white" é a cor de destaque do texto; aqui vira tinta escura */
+  --white: var(--ink);
+  --text: #2a3248;
+  --muted: #5b6478;
+  --faint: #8a93a6;
+  --line: rgba(21, 27, 44, 0.1);
+  --blue-light: #596f98;          /* acentos mais escuros para contraste no branco */
+  --blue-soft: #8ea2c8;
+  --blue-glow: rgba(89, 111, 152, 0.28);
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.55));
+  --glass-border: rgba(255, 255, 255, 0.95);
+}
+
+/* Tokens escuros reaplicados em blocos que continuam escuros/azuis */
+.theme-light .footer,
+.theme-light .booking__box {
+  --white: #ffffff;
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.72);
+  --faint: rgba(255, 255, 255, 0.5);
+  --line: rgba(255, 255, 255, 0.14);
+  --blue-light: #c3cfe8;
+}
+
+html { overflow-x: clip; } /* a faixa inclinada (.care-band) passa da largura da tela */
+.theme-light body, body.theme-light { background: var(--bg); color: var(--text); }
+body.theme-light::after { opacity: 0.025; }
+.theme-light ::selection { color: #fff; }
+
+.theme-light .glass {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 24px 60px -28px rgba(40, 52, 88, 0.35);
+}
+
+/* ---------- Botões ---------- */
+.theme-light .btn--primary { color: #fff; box-shadow: 0 12px 30px -10px rgba(80, 88, 126, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+.theme-light .btn--primary::before { background: var(--ink); }
+.theme-light .btn--primary:hover { color: #fff; }
+.theme-light .btn--ghost { background: rgba(255, 255, 255, 0.7); border-color: rgba(21, 27, 44, 0.14); }
+.theme-light .btn--ghost:hover { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(89, 111, 152, 0.12); }
+
+/* ---------- Orientações ---------- */
+.theme-light .guide { background: rgba(89, 111, 152, 0.07); color: #3d4a66; border-color: rgba(89, 111, 152, 0.45); }
+.theme-light .guide code { background: rgba(21, 27, 44, 0.06); }
+.theme-light .guide-toggle { background: rgba(255, 255, 255, 0.85); box-shadow: 0 8px 24px -12px rgba(40, 52, 88, 0.4); }
+.theme-light .booking__box .guide { background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.85); border-color: rgba(255, 255, 255, 0.4); }
+.theme-light .booking__box .guide::before { color: #fff; }
+.theme-light .footer .guide { background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.75); border-color: rgba(142, 162, 200, 0.45); }
+
+/* ---------- Preloader ---------- */
+.theme-light .preloader { background: radial-gradient(circle at 50% 45%, #ffffff 0%, var(--bg-2) 70%); }
+.theme-light .preloader__base { opacity: 0.12; filter: grayscale(1); }
+
+/* ---------- Header ---------- */
+.theme-light .nav { background: rgba(255, 255, 255, 0.6); }
+.theme-light .header.is-scrolled .nav { background: rgba(255, 255, 255, 0.82); }
+.theme-light .nav__links a:hover,
+.theme-light .nav__links a.is-active { background: rgba(89, 111, 152, 0.1); }
+.theme-light .header.menu-open .nav { background: rgba(255, 255, 255, 0.96); }
+.theme-light .nav__burger { background: rgba(21, 27, 44, 0.04); }
+
+/* ---------- Logo em texto (substitui a PNG branca) ---------- */
+.brand-lockup { display: inline-flex; align-items: center; gap: 14px; }
+.brand-lockup img { width: 44px; height: auto; }
+.brand-lockup__text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-lockup__text b { font-weight: 400; font-size: 1.32rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); }
+.brand-lockup__text small { font-size: 0.62rem; letter-spacing: 0.42em; text-transform: uppercase; color: var(--blue); margin-top: 4px; }
+.theme-light .hero__logo.brand-lockup { width: auto; }
+
+/* ---------- Hero: base branca, foto em moldura de arco ---------- */
+.theme-light .hero {
+  background:
+    radial-gradient(ellipse 50% 60% at 15% 30%, rgba(142, 162, 200, 0.22), transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+}
+.theme-light .hero__bg {
+  inset: 104px var(--gutter) 40px auto;
+  width: min(46vw, 760px);
+  border-radius: 999px 999px 36px 36px;   /* arco, como uma arcada */
+  background-position: 72% center;
+  box-shadow: 0 40px 90px -40px rgba(21, 27, 44, 0.55), 0 0 0 10px rgba(255, 255, 255, 0.85), 0 0 0 11px rgba(89, 111, 152, 0.18);
+}
+.theme-light .hero__shade { display: none; }
+.theme-light .hero__orb--1 { background: rgba(142, 162, 200, 0.35); }
+.theme-light .hero__orb--2 { background: rgba(89, 111, 152, 0.2); right: 30%; }
+.theme-light .hero__subtitle { color: var(--muted); }
+.theme-light .chip__label { color: var(--muted); }
+.theme-light .hero__scroll { display: none; }
+@media (min-width: 1101px) {
+  /* cards sobre a borda esquerda da moldura da foto */
+  .theme-light .hero__inner { position: static; grid-template-columns: minmax(0, 640px); }
+  .theme-light .hero__chips {
+    position: absolute; z-index: 3;
+    left: calc(100% - var(--gutter) - min(46vw, 760px) + 28px); bottom: 70px;
+    align-items: flex-start;
+  }
+  .theme-light .chip__label { white-space: nowrap; }
+  .theme-light .chip:nth-child(2) { margin-right: 0; margin-left: 40px; }
+}
+
+/* Decoração: dentes e brilhos */
+.deco-tooth { position: absolute; pointer-events: none; fill: none; stroke: var(--blue-soft, #8ea2c8); stroke-width: 0.6; }
+.deco-tooth--watermark { width: 520px; height: 520px; left: -120px; bottom: -140px; opacity: 0.18; stroke-width: 0.25; }
+.deco-tooth--a { width: 64px; height: 64px; right: calc(min(46vw, 760px) + var(--gutter) - 20px); top: 22%; stroke-width: 1; opacity: 0.6; animation: floaty 7s ease-in-out infinite; }
+.deco-tooth--b { width: 40px; height: 40px; right: calc(var(--gutter) + 20px); top: 86px; stroke-width: 1.2; opacity: 0.55; animation: floaty 6s ease-in-out -2s infinite; }
+.deco-spark { position: absolute; pointer-events: none; color: var(--blue); font-size: 18px; opacity: 0.7; animation: twinkle 3.2s ease-in-out infinite; }
+.deco-spark--a { right: calc(min(46vw, 760px) * 0.62 + var(--gutter)); top: 18%; }
+.deco-spark--b { right: calc(var(--gutter) + 8%); top: 50%; font-size: 12px; animation-delay: -1s; }
+.deco-spark--c { left: 44%; bottom: 16%; font-size: 14px; animation-delay: -2s; }
+@keyframes floaty { 50% { transform: translateY(-14px) rotate(6deg); } }
+@keyframes twinkle { 50% { opacity: 0.15; transform: scale(0.7) rotate(45deg); } }
+
+/* ---------- Faixa de tratamentos ---------- */
+.care-band {
+  position: relative; z-index: 2;
+  overflow: hidden;
+  padding: 18px 0;
+  background: linear-gradient(90deg, var(--blue-2), var(--blue));
+  color: #fff;
+  transform: rotate(-1.2deg) scale(1.02);
+  box-shadow: 0 20px 40px -24px rgba(80, 88, 126, 0.8);
+}
+.care-band__track { display: flex; align-items: center; gap: 28px; width: max-content; animation: band 36s linear infinite; }
+.care-band span { font-family: var(--font-serif); font-size: 1.6rem; white-space: nowrap; }
+.care-band svg { width: 22px; height: 22px; stroke: rgba(255, 255, 255, 0.75); stroke-width: 1.4; fill: none; }
+@keyframes band { to { transform: translateX(-50%); } }
+
+/* ---------- Títulos: dente no lugar do traço ---------- */
+.theme-light .eyebrow::before {
+  width: 18px; height: 18px; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-width='1.8' d='M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-width='1.8' d='M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.theme-light .serif-accent { background: linear-gradient(180deg, #7a8fba 0%, var(--blue) 55%, var(--blue-2) 100%); -webkit-background-clip: text; background-clip: text; }
+
+/* ---------- Benefícios: padrão sutil de dentes ---------- */
+.theme-light .benefits { background: #fff; }
+.theme-light .benefits::before {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(142, 162, 200, 0.18), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cpath fill='none' stroke='%23596F98' stroke-opacity='.09' stroke-width='1' transform='translate(24 24)' d='M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z'/%3E%3C/svg%3E");
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+          mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+}
+.theme-light .card { background: rgba(255, 255, 255, 0.92); border-color: rgba(21, 27, 44, 0.06); }
+.theme-light .card:hover { border-color: rgba(89, 111, 152, 0.35); }
+.theme-light .card::before { background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(142, 162, 200, 0.22), transparent 45%); }
+.theme-light .card__icon {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--blue-2));
+  border: 0; color: #fff;
+  box-shadow: 0 10px 24px -10px rgba(80, 88, 126, 0.7), 0 0 0 6px rgba(89, 111, 152, 0.1);
+}
+.theme-light .card__icon svg { width: 28px; height: 28px; }
+
+/* ---------- Quem sou eu ---------- */
+.theme-light .about { background: var(--bg-2); }
+.theme-light .about__portrait { border-radius: 999px 999px 32px 32px; padding: 10px; }
+.theme-light .about__portrait img { border-radius: 999px 999px 24px 24px; }
+.theme-light .about__portrait figcaption { color: #fff; }
+.theme-light .about__progress { background: rgba(21, 27, 44, 0.08); }
+.theme-light .timeline__line { background: rgba(21, 27, 44, 0.12); }
+.theme-light .milestone__year { -webkit-text-stroke: 1px rgba(89, 111, 152, 0.7); }
+.theme-light .milestone::after {
+  /* marcador em forma de dente */
+  width: 22px; height: 22px; border: 0; border-radius: 0; box-shadow: none;
+  background: var(--blue);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.theme-light .milestone__img { background: #fff; }
+
+/* ---------- Quadros atendidos ---------- */
+.theme-light .treatments { background: #fff; }
+.theme-light .tlist__item::before { background: linear-gradient(90deg, rgba(142, 162, 200, 0.2), rgba(142, 162, 200, 0.02)); }
+.theme-light .tlist__num {
+  display: grid; place-items: center;
+  width: 46px; height: 46px;
+  font-size: 1.05rem; color: var(--blue);
+  background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23EEF1F8' stroke='%23596F98' stroke-opacity='.45' stroke-width='.8' d='M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z'/%3E%3C/svg%3E");
+  padding-bottom: 8px;
+}
+.theme-light .tlist__item:hover .tlist__arrow { color: #fff; }
+
+/* ---------- Onde atendo ---------- */
+.theme-light .location__card,
+.theme-light .location__map { background: #fff; border-color: rgba(21, 27, 44, 0.06); }
+.theme-light .location__map iframe { filter: grayscale(0.35) contrast(1.02); }
+
+/* ---------- Depoimentos ---------- */
+.theme-light .testimonials { background: var(--bg-2); }
+.theme-light .tcard { background: #fff; border-color: rgba(21, 27, 44, 0.05); }
+.theme-light .tcard .stars { color: var(--blue); }
+.theme-light .avatar { color: #fff; }
+
+/* ---------- FAQ ---------- */
+.theme-light .faq { background: #fff; }
+.theme-light .acc { background: var(--bg); border-color: rgba(21, 27, 44, 0.06); box-shadow: none; }
+.theme-light .acc[open] { background: #fff; box-shadow: 0 20px 50px -30px rgba(40, 52, 88, 0.35); }
+.theme-light .acc[open] summary i { color: #fff; }
+
+/* ---------- Agendamento: cartão azul ---------- */
+.theme-light .booking { background: var(--bg-2); }
+.theme-light .booking__box {
+  background: linear-gradient(135deg, #5f76a1 0%, var(--blue-2) 60%, #3c4566 100%);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 50px 100px -40px rgba(60, 69, 102, 0.75);
+}
+.theme-light .booking__glow { background: radial-gradient(circle, rgba(255, 255, 255, 0.28), transparent 65%); }
+.theme-light .booking__box .serif-accent { background: linear-gradient(180deg, #ffffff, #c9d4ea); -webkit-background-clip: text; background-clip: text; }
+.theme-light .booking__box::after {
+  /* dente grande decorativo no canto */
+  content: ""; position: absolute; right: -60px; bottom: -80px; width: 320px; height: 320px; pointer-events: none; opacity: 0.12;
+  background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='.5' d='M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z'/%3E%3C/svg%3E");
+}
+.theme-light .booking__perks li::before { background: rgba(255, 255, 255, 0.22); color: #fff; }
+.theme-light .booking__box .field input,
+.theme-light .booking__box .field select { background: rgba(255, 255, 255, 0.1); color: #fff; }
+.theme-light .booking__box .field select option { background: #fff; color: var(--ink); }
+.theme-light .booking__box .field--select::after { border-color: rgba(255, 255, 255, 0.7); }
+.theme-light .booking__box .field input:focus,
+.theme-light .booking__box .field select:focus { border-color: #fff; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15); }
+.theme-light .booking__box .pill input:checked + span { background: #fff; border-color: #fff; color: var(--blue-2); }
+.theme-light .booking__box .btn--primary { background: #fff; color: var(--ink); box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.45); }
+.theme-light .booking__box .btn--primary::before { background: var(--ink); }
+.theme-light .booking__box .btn--primary:hover { color: #fff; }
+
+/* ---------- Rodapé escuro (âncora visual) ---------- */
+.theme-light .footer { background: linear-gradient(180deg, #1a2034 0%, #11152a 100%); border-top: 0; }
+
+/* =========================================================
+   Responsivo
+   ========================================================= */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .theme-light .hero__inner { grid-template-columns: minmax(0, 1fr) auto; }
+}
+
+@media (max-width: 768px) {
+  .theme-light .hero__mobile-img::after { background: linear-gradient(180deg, rgba(7, 8, 11, 0.2) 0%, transparent 25%, transparent 55%, var(--bg) 100%); }
+  .theme-light .hero { background: var(--bg); }
+  .deco-tooth--a, .deco-tooth--b, .deco-spark--a, .deco-spark--b { display: none; }
+  .deco-tooth--watermark { width: 340px; height: 340px; left: auto; right: -120px; bottom: -60px; }
+  .brand-lockup__text b { font-size: 1.05rem; }
+  .brand-lockup img { width: 36px; }
+  .care-band span { font-size: 1.3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .care-band__track, .deco-tooth, .deco-spark { animation: none; }
+}

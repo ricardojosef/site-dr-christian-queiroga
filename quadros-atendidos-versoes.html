@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quadros Atendidos — Versões</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo-christianq.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* ---------- Página de comparação ---------- */
+    .compare-bar {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      padding: 14px var(--gutter);
+      background: rgba(7, 8, 11, 0.75);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      font-size: 0.85rem;
+    }
+    .compare-bar nav { display: flex; gap: 6px; flex-wrap: wrap; }
+    .compare-bar a { padding: 8px 14px; border-radius: 999px; color: var(--muted); border: 1px solid var(--line); transition: 0.3s; }
+    .compare-bar a:hover { color: var(--white); border-color: var(--blue-light); }
+    .compare-bar strong { color: var(--white); font-weight: 600; letter-spacing: 0.04em; }
+    .version-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 14px; margin-bottom: 26px;
+      border-radius: 999px; border: 1px solid rgba(142, 162, 200, 0.4);
+      background: rgba(89, 111, 152, 0.15);
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-light);
+    }
+    .version + .version { border-top: 1px solid var(--line); }
+    @media (max-width: 600px) {
+      .compare-bar { position: static; }
+      .compare-bar a { padding: 6px 12px; font-size: 0.8rem; }
+    }
+
+    /* =========================================================
+       VERSÃO A — Painéis expansíveis
+       ========================================================= */
+    .panels { display: flex; gap: 12px; height: min(640px, 78vh); }
+    .pnl {
+      position: relative;
+      flex: 1 1 0; min-width: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: flex-grow 0.8s var(--ease), border-color 0.4s;
+      outline: none;
+    }
+    .pnl.is-active { flex-grow: 5.5; cursor: default; border-color: rgba(142, 162, 200, 0.4); }
+    .pnl:focus-visible { box-shadow: 0 0 0 3px rgba(142, 162, 200, 0.5); }
+    .pnl__img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0.35; filter: grayscale(0.6) brightness(0.7);
+      transform: scale(1.15);
+      transition: opacity 0.8s var(--ease), filter 0.8s var(--ease), transform 1.2s var(--ease);
+    }
+    .pnl.is-active .pnl__img { opacity: 1; filter: none; transform: scale(1); }
+    .pnl::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(7, 8, 11, 0.1) 30%, rgba(7, 8, 11, 0.92) 100%);
+    }
+    .pnl__num {
+      position: absolute; z-index: 2; top: 22px; left: 50%; transform: translateX(-50%);
+      font-family: var(--font-serif); font-size: 1.3rem; color: var(--blue-light);
+      transition: left 0.6s var(--ease), transform 0.6s var(--ease);
+    }
+    .pnl.is-active .pnl__num { left: 28px; transform: none; }
+    .pnl__label {
+      position: absolute; z-index: 2; left: 50%; bottom: 28px;
+      writing-mode: vertical-rl; transform: translateX(-50%) rotate(180deg);
+      white-space: nowrap; font-size: 0.95rem; font-weight: 500; color: var(--white);
+      transition: opacity 0.4s;
+    }
+    .pnl.is-active .pnl__label { opacity: 0; }
+    .pnl__content {
+      position: absolute; z-index: 2; left: 28px; right: 28px; bottom: 28px;
+      max-width: 520px;
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.5s, transform 0.6s var(--ease);
+      pointer-events: none;
+    }
+    .pnl.is-active .pnl__content { opacity: 1; transform: none; transition-delay: 0.3s; pointer-events: auto; }
+    .pnl__content h3 { font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.2; color: var(--white); font-weight: 600; margin-bottom: 10px; }
+    .pnl__content p { color: var(--text); margin-bottom: 20px; }
+    .pnl__tag { display: inline-block; margin-bottom: 14px; padding: 5px 12px; border-radius: 999px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); background: rgba(89, 111, 152, 0.55); }
+
+    @media (max-width: 900px) {
+      .panels { flex-direction: column; height: auto; }
+      .pnl { flex: none; height: 76px; transition: height 0.7s var(--ease); }
+      .pnl.is-active { height: 440px; }
+      .pnl__num { left: 22px; top: 50%; transform: translateY(-50%); }
+      .pnl.is-active .pnl__num { top: 22px; left: 22px; transform: none; }
+      .pnl__label { writing-mode: horizontal-tb; transform: translateY(-50%); left: 64px; top: 50%; bottom: auto; right: 20px; white-space: normal; line-height: 1.25; }
+      .pnl__content { left: 22px; right: 22px; bottom: 22px; }
+    }
+
+    /* =========================================================
+       VERSÃO B — Split com imagem fixa, sincronizada ao scroll
+       ========================================================= */
+    .split { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr); gap: clamp(30px, 6vw, 90px); align-items: start; }
+    .split__media {
+      position: sticky; top: 110px;
+      height: min(620px, calc(100vh - 160px));
+      border-radius: 28px; padding: 10px;
+    }
+    .split__frame { position: relative; width: 100%; height: 100%; border-radius: 20px; overflow: hidden; }
+    .split__frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; clip-path: inset(100% 0 0 0); }
+    .split__frame img.is-active { clip-path: inset(0 0 0 0); }
+    .split__frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(7, 8, 11, 0.8)); pointer-events: none; }
+    .split__counter {
+      position: absolute; z-index: 2; left: 34px; bottom: 30px;
+      display: flex; align-items: baseline; gap: 6px;
+      font-family: var(--font-serif); color: var(--white);
+    }
+    .split__counter b { font-size: 3.4rem; font-weight: 500; line-height: 1; }
+    .split__counter span { color: var(--muted); font-size: 1.2rem; }
+    .split__bar { position: absolute; z-index: 2; right: 30px; bottom: 40px; width: 120px; height: 2px; background: rgba(255, 255, 255, 0.2); border-radius: 2px; overflow: hidden; }
+    .split__bar i { display: block; height: 100%; background: var(--blue-light); transform-origin: left; transform: scaleX(0); }
+
+    .split__list { display: grid; }
+    .sitem {
+      min-height: 46vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--line);
+      opacity: 0.28;
+      transition: opacity 0.6s var(--ease);
+    }
+    .sitem:first-child { padding-top: 0; }
+    .sitem.is-active { opacity: 1; }
+    .sitem__num { font-family: var(--font-serif); color: var(--blue-light); font-size: 1.2rem; margin-bottom: 10px; }
+    .sitem h3 { font-size: clamp(1.5rem, 3vw, 2.4rem); line-height: 1.15; color: var(--white); font-weight: 600; letter-spacing: -0.01em; }
+    .sitem p { color: var(--muted); margin-top: 12px; max-width: 480px; }
+    .sitem ul { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .sitem li { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); font-size: 0.8rem; color: var(--text); }
+    .sitem__thumb { display: none; }
+
+    @media (max-width: 900px) {
+      .split { grid-template-columns: 1fr; }
+      .split__media { display: none; }
+      .sitem { min-height: 0; opacity: 1; padding: 26px 0; }
+      .sitem__thumb { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 16px; margin-bottom: 18px; }
+    }
+  </style>
+</head>
+<body class="show-guides">
+
+  <div class="compare-bar">
+    <strong>Quadros atendidos · 2 novas versões</strong>
+    <nav>
+      <a href="#versao-a">Versão A · Painéis</a>
+      <a href="#versao-b">Versão B · Imagem fixa</a>
+      <a href="index.html#tratamentos">← Versão atual (index)</a>
+    </nav>
+  </div>
+
+  <button class="guide-toggle" id="guideToggle" type="button" aria-pressed="true">
+    <span class="guide-toggle__dot"></span>
+    <span class="guide-toggle__label">Orientações: <strong>ON</strong></span>
+  </button>
+
+  <main>
+    <!-- =========================================================
+         VERSÃO A — Painéis expansíveis
+         Desktop: passe o mouse (ou clique/Tab) para abrir um painel.
+         Mobile: vira um acordeão vertical, toque para abrir.
+         ========================================================= -->
+    <section class="section version" id="versao-a">
+      <div class="container">
+        <header class="section__head">
+          <span class="version-tag">Versão A · Painéis expansíveis</span>
+          <span class="eyebrow">Quadros atendidos</span>
+          <h2 class="section__title">Como posso <em class="serif-accent">te ajudar</em></h2>
+          <p class="section__lead">Escolha a sua queixa e veja como ela pode ser tratada.</p>
+        </header>
+        <aside class="guide" data-guide>
+          <strong>Orientação — Versão A:</strong> cada painel é uma queixa do paciente. O texto curto (vertical) deve ter <b>até 3 palavras</b>; ao abrir, mostre o tratamento, 1 frase de benefício e uma CTA. Imagens verticais/quadradas funcionam melhor (mín. 1000 × 1200 px).
+        </aside>
+
+        <div class="panels" id="panels">
+          <article class="pnl glass is-active" tabindex="0">
+            <img class="pnl__img" src="assets/img/placeholders/quadro-01.svg" alt="" loading="lazy" />
+            <span class="pnl__num">01</span>
+            <span class="pnl__label">Dentes irregulares</span>
+            <div class="pnl__content">
+              <span class="pnl__tag">Estética</span>
+              <h3>Dentes desalinhados, desgastados ou com formato irregular</h3>
+              <p>Lentes de contato dental e facetas em resina ou porcelana para um sorriso harmônico e natural.</p>
+              <a href="index.html#agendar" class="btn btn--primary btn--sm">Agendar avaliação</a>
+            </div>
+          </article>
+          <article class="pnl glass" tabindex="0">
+            <img class="pnl__img" src="assets/img/placeholders/quadro-02.svg" alt="" loading="lazy" />
+            <span class="pnl__num">02</span>
+            <span class="pnl__label">Dentes amarelados</span>
+            <div class="pnl__content">
+              <span class="pnl__tag">Estética</span>
+              <h3>Dentes amarelados ou manchados</h3>
+              <p>Clareamento de consultório e caseiro supervisionado, com segurança e sem sensibilidade exagerada.</p>
+              <a href="index.html#agendar" class="btn btn--primary btn--sm">Agendar avaliação</a>
+            </div>
+          </article>
+          <article class="pnl glass" tabindex="0">
+            <img class="pnl__img" src="assets/img/placeholders/quadro-03.svg" alt="" loading="lazy" />
+            <span class="pnl__num">03</span>
+            <span class="pnl__label">Siso e extrações</span>
+            <div class="pnl__content">
+              <span class="pnl__tag">Cirurgia oral menor</span>
+              <h3>Dente do siso, dentes condenados ou que precisam ser removidos</h3>
+              <p>Extrações e pequenas cirurgias com planejamento, anestesia adequada e acompanhamento no pós-operatório.</p>
+              <a href="index.html#agendar" class="btn btn--primary btn--sm">Agendar avaliação</a>
+            </div>
+          </article>
+          <article class="pnl glass" tabindex="0">
+            <img class="pnl__img" src="assets/img/placeholders/quadro-04.svg" alt="" loading="lazy" />
+            <span class="pnl__num">04</span>
+            <span class="pnl__label">Mordida torta</span>
+            <div class="pnl__content">
+              <span class="pnl__tag">Ortodontia</span>
+              <h3>Dentes tortos ou mordida incorreta</h3>
+              <p>Alinhadores invisíveis e ortodontia para alinhar o sorriso com conforto e discrição.</p>
+              <a href="index.html#agendar" class="btn btn--primary btn--sm">Agendar avaliação</a>
+            </div>
+          </article>
+          <article class="pnl glass" tabindex="0">
+            <img class="pnl__img" src="assets/img/placeholders/quadro-05.svg" alt="" loading="lazy" />
+            <span class="pnl__num">05</span>
+            <span class="pnl__label">Dor de dente</span>
+            <div class="pnl__content">
+              <span class="pnl__tag">Urgência</span>
+              <h3>Dor de dente e sensibilidade</h3>
+              <p>Tratamento de canal, restaurações e atendimento de urgência para aliviar a dor rapidamente.</p>
+              <a href="index.html#agendar" class="btn btn--primary btn--sm">Agendar avaliação</a>
+            </div>
+          </article>
+          <article class="pnl glass" tabindex="0">
+            <img class="pnl__img" src="assets/img/placeholders/quadro-06.svg" alt="" loading="lazy" />
+            <span class="pnl__num">06</span>
+            <span class="pnl__label">Bruxismo</span>
+            <div class="pnl__content">
+              <span class="pnl__tag">Função</span>
+              <h3>Ranger os dentes, dor na mandíbula</h3>
+              <p>Diagnóstico e tratamento de bruxismo e DTM com placas e terapias personalizadas.</p>
+              <a href="index.html#agendar" class="btn btn--primary btn--sm">Agendar avaliação</a>
+            </div>
+          </article>
+          <article class="pnl glass" tabindex="0">
+            <img class="pnl__img" src="assets/img/placeholders/quadro-07.svg" alt="" loading="lazy" />
+            <span class="pnl__num">07</span>
+            <span class="pnl__label">Prevenção</span>
+            <div class="pnl__content">
+              <span class="pnl__tag">Clínica geral</span>
+              <h3>Manutenção e prevenção</h3>
+              <p>Check-up, limpeza profissional e orientação para manter o sorriso saudável por muito mais tempo.</p>
+              <a href="index.html#agendar" class="btn btn--primary btn--sm">Agendar avaliação</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         VERSÃO B — Split com imagem fixa
+         Desktop: a imagem à esquerda fica fixa e troca conforme o item ativo na rolagem.
+         Mobile: cada item mostra a própria imagem (sem efeito fixo).
+         ========================================================= -->
+    <section class="section version" id="versao-b">
+      <div class="container">
+        <header class="section__head">
+          <span class="version-tag">Versão B · Imagem fixa + scroll</span>
+          <span class="eyebrow">Quadros atendidos</span>
+          <h2 class="section__title">O que eu <em class="serif-accent">trato</em></h2>
+          <p class="section__lead">Role para conhecer cada tratamento.</p>
+        </header>
+        <aside class="guide" data-guide>
+          <strong>Orientação — Versão B:</strong> ideal para contar um pouco mais sobre cada tratamento. Título = queixa do paciente; texto = como você resolve; etiquetas = procedimentos envolvidos. Imagens verticais (4:5, mín. 1000 × 1250 px), de preferência casos reais autorizados.
+        </aside>
+
+        <div class="split" id="split">
+          <div class="split__media glass">
+            <div class="split__frame" id="splitFrame">
+              <img src="assets/img/placeholders/quadro-01.svg" alt="" class="is-active" />
+              <img src="assets/img/placeholders/quadro-02.svg" alt="" />
+              <img src="assets/img/placeholders/quadro-03.svg" alt="" />
+              <img src="assets/img/placeholders/quadro-04.svg" alt="" />
+              <img src="assets/img/placeholders/quadro-05.svg" alt="" />
+              <img src="assets/img/placeholders/quadro-06.svg" alt="" />
+              <img src="assets/img/placeholders/quadro-07.svg" alt="" />
+            </div>
+            <div class="split__counter"><b id="splitNum">01</b><span>/ 07</span></div>
+            <div class="split__bar"><i id="splitBar"></i></div>
+          </div>
+
+          <div class="split__list">
+            <article class="sitem is-active">
+              <img class="sitem__thumb" src="assets/img/placeholders/quadro-01.svg" alt="" loading="lazy" />
+              <span class="sitem__num">01</span>
+              <h3>Dentes desalinhados, desgastados ou com formato irregular</h3>
+              <p>Planejo cada detalhe para um sorriso harmônico, respeitando o formato do seu rosto.</p>
+              <ul><li>Lentes de contato dental</li><li>Facetas em resina</li><li>Facetas em porcelana</li></ul>
+            </article>
+            <article class="sitem">
+              <img class="sitem__thumb" src="assets/img/placeholders/quadro-02.svg" alt="" loading="lazy" />
+              <span class="sitem__num">02</span>
+              <h3>Dentes amarelados ou manchados</h3>
+              <p>Clareamento seguro, com acompanhamento para um resultado natural e duradouro.</p>
+              <ul><li>Clareamento de consultório</li><li>Clareamento caseiro</li></ul>
+            </article>
+            <article class="sitem">
+              <img class="sitem__thumb" src="assets/img/placeholders/quadro-03.svg" alt="" loading="lazy" />
+              <span class="sitem__num">03</span>
+              <h3>Dente do siso ou dentes que precisam ser removidos</h3>
+              <p>Cirurgia oral menor com planejamento, anestesia adequada e cuidado no pós-operatório.</p>
+              <ul><li>Extração de siso</li><li>Extrações</li><li>Pequenas cirurgias</li></ul>
+            </article>
+            <article class="sitem">
+              <img class="sitem__thumb" src="assets/img/placeholders/quadro-04.svg" alt="" loading="lazy" />
+              <span class="sitem__num">04</span>
+              <h3>Dentes tortos ou mordida incorreta</h3>
+              <p>Alinhamento discreto e confortável, com previsibilidade em cada etapa.</p>
+              <ul><li>Alinhadores invisíveis</li><li>Ortodontia</li></ul>
+            </article>
+            <article class="sitem">
+              <img class="sitem__thumb" src="assets/img/placeholders/quadro-05.svg" alt="" loading="lazy" />
+              <span class="sitem__num">05</span>
+              <h3>Dor de dente e sensibilidade</h3>
+              <p>Diagnóstico rápido e tratamento para aliviar a dor e preservar o seu dente.</p>
+              <ul><li>Tratamento de canal</li><li>Restaurações</li><li>Urgência</li></ul>
+            </article>
+            <article class="sitem">
+              <img class="sitem__thumb" src="assets/img/placeholders/quadro-06.svg" alt="" loading="lazy" />
+              <span class="sitem__num">06</span>
+              <h3>Ranger os dentes, dor na mandíbula</h3>
+              <p>Proteção dos dentes e alívio das dores com tratamento personalizado.</p>
+              <ul><li>Placa miorrelaxante</li><li>Bruxismo</li><li>DTM</li></ul>
+            </article>
+            <article class="sitem">
+              <img class="sitem__thumb" src="assets/img/placeholders/quadro-07.svg" alt="" loading="lazy" />
+              <span class="sitem__num">07</span>
+              <h3>Manutenção e prevenção</h3>
+              <p>Consultas periódicas para evitar problemas e manter o sorriso saudável.</p>
+              <ul><li>Check-up</li><li>Limpeza profissional</li><li>Orientação de higiene</li></ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script>
+    (() => {
+      const $ = (s, c = document) => c.querySelector(s);
+      const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+      const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      // Orientações ON/OFF (mesma preferência do index)
+      const toggle = $('#guideToggle');
+      const apply = (on) => { document.body.classList.toggle('show-guides', on); toggle.setAttribute('aria-pressed', on); $('strong', toggle).textContent = on ? 'ON' : 'OFF'; };
+      let saved = null; try { saved = localStorage.getItem('cq-guides'); } catch (e) {}
+      apply(saved !== 'off');
+      toggle.addEventListener('click', () => {
+        const on = !document.body.classList.contains('show-guides'); apply(on);
+        try { localStorage.setItem('cq-guides', on ? 'on' : 'off'); } catch (e) {}
+        window.ScrollTrigger && ScrollTrigger.refresh();
+      });
+
+      /* ---------- Versão A: painéis ---------- */
+      const panels = $$('.pnl');
+      const activate = (p) => panels.forEach((o) => o.classList.toggle('is-active', o === p));
+      panels.forEach((p) => {
+        if (finePointer) p.addEventListener('mouseenter', () => activate(p));
+        p.addEventListener('click', () => activate(p));
+        p.addEventListener('focus', () => activate(p));
+      });
+
+      if (!window.gsap || !window.ScrollTrigger) return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const lenis = new Lenis({ lerp: 0.09 });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((t) => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
+        $$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); lenis.scrollTo(a.getAttribute('href'), { offset: -60 }); }));
+      }
+
+      // Entrada dos painéis
+      gsap.from(panels, { y: 60, autoAlpha: 0, duration: 1.1, ease: 'expo.out', stagger: 0.07, clearProps: 'opacity,visibility,transform', scrollTrigger: { trigger: '#panels', start: 'top 80%' } });
+
+      /* ---------- Versão B: imagem fixa sincronizada ---------- */
+      const mm = gsap.matchMedia();
+      mm.add('(min-width: 901px)', () => {
+        const items = $$('.sitem');
+        const imgs = $$('#splitFrame img');
+        const num = $('#splitNum');
+        const bar = $('#splitBar');
+        let current = 0;
+
+        const setActive = (i) => {
+          if (i === current) return;
+          const down = i > current;
+          items.forEach((it, k) => it.classList.toggle('is-active', k === i));
+          // nova imagem entra por cima (de baixo ou de cima, conforme a direção)
+          gsap.set(imgs, { zIndex: 0 });
+          gsap.set(imgs[current], { zIndex: 1 });
+          gsap.fromTo(imgs[i],
+            { clipPath: down ? 'inset(100% 0 0 0)' : 'inset(0 0 100% 0)', scale: 1.15, zIndex: 2 },
+            { clipPath: 'inset(0% 0 0% 0)', scale: 1, duration: 0.9, ease: 'expo.out', overwrite: true });
+          num.textContent = String(i + 1).padStart(2, '0');
+          current = i;
+        };
+
+        items.forEach((it, i) => {
+          ScrollTrigger.create({
+            trigger: it, start: 'top 55%', end: 'bottom 55%',
+            onEnter: () => setActive(i),
+            onEnterBack: () => setActive(i),
+          });
+        });
+        ScrollTrigger.create({
+          trigger: '.split__list', start: 'top 55%', end: 'bottom 55%',
+          onUpdate: (self) => gsap.set(bar, { scaleX: self.progress }),
+        });
+
+        return () => { items.forEach((it, k) => it.classList.toggle('is-active', k === 0)); };
+      });
+
+      // clearProps devolve a opacidade para o CSS (itens inativos ficam esmaecidos)
+      gsap.from('.sitem', { y: 40, autoAlpha: 0, duration: 1, ease: 'expo.out', stagger: 0.05, clearProps: 'opacity,visibility,transform', scrollTrigger: { trigger: '.split__list', start: 'top 85%' } });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Christian Queiroga | Cirurgião-Dentista (versão clara)</title>
+  <!-- ORIENTAÇÃO: ajuste a descrição com cidade + principais tratamentos (ajuda no Google). -->
+  <meta name="description" content="Dr. Christian Queiroga, cirurgião-dentista em Guanhães/MG. Clínica geral, estética do sorriso e cirurgia oral menor com atendimento humanizado. Agende sua avaliação." />
+  <meta name="theme-color" content="#f6f8fc" />
+  <meta property="og:title" content="Dr. Christian Queiroga | Cirurgião-Dentista" />
+  <meta property="og:description" content="Um novo olhar para o seu sorriso. Agende sua avaliação." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo-christianq.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/claro.css" />
+</head>
+<body class="theme-light is-loading show-guides">
+
+  <!-- Ícones odontológicos reutilizáveis (<use href="#i-...">) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-tooth" viewBox="0 0 24 24"><path d="M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z"/></symbol>
+    <symbol id="i-tooth-check" viewBox="0 0 24 24"><path d="M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z"/><path d="M9 9l2 2 4-4"/></symbol>
+    <symbol id="i-tooth-shine" viewBox="0 0 24 24"><path d="M7 4.5C4.8 4.5 3.5 6.2 3.5 8.4c0 1.8.7 2.9 1.1 4.5.6 2.3.7 7 2.5 7 1.5 0 1.5-4.2 3.4-4.2s1.9 4.2 3.4 4.2c1.8 0 1.9-4.7 2.5-7 .4-1.6 1.1-2.7 1.1-4.5"/><path d="M14 6.2c-.6-1-1.5-1.7-3-1.7-1.1 0-1.9.6-3.2.6"/><path d="M19 1.5v4M17 3.5h4M21.5 8.5v2M20.5 9.5h2"/></symbol>
+    <symbol id="i-brush" viewBox="0 0 24 24"><path d="M4 20l9.5-9.5"/><rect x="12.5" y="3" width="8.5" height="5" rx="1.5" transform="rotate(45 16.75 5.5)"/><path d="M15 4.5v-2M17.5 6.5l1.5-1.5M19.5 9h2"/></symbol>
+    <symbol id="i-mirror" viewBox="0 0 24 24"><circle cx="15.5" cy="8.5" r="5"/><path d="M12 12L3.5 20.5"/><path d="M13.5 6.5a3 3 0 0 1 3-1"/></symbol>
+    <symbol id="i-implant" viewBox="0 0 24 24"><path d="M7 3h10c0 3-1.5 5-5 5S7 6 7 3z"/><path d="M9 10h6M9.5 13h5M10 16h4M10.5 19h3M12 8v14"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M10 13.2c-1 0-1.6.7-1.6 1.6 0 .8.4 1.3.6 2.1.2.8.3 2.1 1 2.1.6 0 .6-1.4 2-1.4s1.4 1.4 2 1.4c.7 0 .8-1.3 1-2.1.2-.8.6-1.3.6-2.1 0-.9-.6-1.6-1.6-1.6-.8 0-1 .4-2 .4s-1.2-.4-2-.4z"/></symbol>
+  </svg>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__logo">
+      <img class="preloader__base" src="assets/img/logo-christianq-dark.svg" alt="" />
+      <div class="preloader__fill" id="preloaderFill">
+        <img src="assets/img/logo-christianq-dark.svg" alt="" />
+      </div>
+    </div>
+    <div class="preloader__meta">
+      <span class="preloader__name">Dr. Christian Queiroga</span>
+      <span class="preloader__count"><span id="preloaderCount">0</span>%</span>
+    </div>
+  </div>
+
+  <!-- Cursor personalizado (apenas desktop) -->
+  <div class="cursor" aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"></div></div>
+
+  <!-- Botão para mostrar/ocultar as orientações de conteúdo -->
+  <button class="guide-toggle" id="guideToggle" type="button" aria-pressed="true">
+    <span class="guide-toggle__dot"></span>
+    <span class="guide-toggle__label">Orientações: <strong>ON</strong></span>
+  </button>
+
+  <!-- ============ HEADER ============ -->
+  <!-- O menu fica oculto na hero e aparece a partir da segunda seção (ver main.js) -->
+  <header class="header is-hidden" id="header">
+    <nav class="nav glass">
+      <a href="#inicio" class="nav__brand" aria-label="Início">
+        <img src="assets/img/logo-christianq-dark.svg" alt="" width="30" height="31" />
+        <span>Dr. Christian Queiroga</span>
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#beneficios">Benefícios</a></li>
+        <li><a href="#sobre">Quem sou eu</a></li>
+        <li><a href="#tratamentos">Tratamentos</a></li>
+        <li><a href="#onde-atendo">Onde atendo</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#duvidas">Dúvidas</a></li>
+      </ul>
+      <a href="#agendar" class="btn btn--primary btn--sm nav__cta">Agendar</a>
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <!-- Versão clara: a foto fica numa moldura em arco (remete à arcada dentária) à direita.
+         Mobile: a foto aparece acima do texto, colada no topo e nas laterais. -->
+    <section class="hero" id="inicio">
+      <div class="hero__bg" style="background-image:url('assets/img/bgchristian.jpg')" role="img" aria-label="Dr. Christian Queiroga em seu consultório"></div>
+      <div class="hero__shade"></div>
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+
+      <!-- Elementos decorativos odontológicos -->
+      <svg class="deco-tooth deco-tooth--watermark" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+      <svg class="deco-tooth deco-tooth--a" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+      <svg class="deco-tooth deco-tooth--b" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+      <span class="deco-spark deco-spark--a" aria-hidden="true">✦</span>
+      <span class="deco-spark deco-spark--b" aria-hidden="true">✦</span>
+      <span class="deco-spark deco-spark--c" aria-hidden="true">✦</span>
+
+      <figure class="hero__mobile-img">
+        <img src="assets/img/bgchristian.jpg" alt="Dr. Christian Queiroga sorrindo" />
+      </figure>
+
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <!-- Logo em versão escura (a PNG original tem texto branco) -->
+          <div class="hero__logo brand-lockup" role="img" aria-label="Dr. Christian Queiroga — Cirurgião-Dentista">
+            <img src="assets/img/logo-christianq-dark.svg" alt="" width="44" height="45" />
+            <span class="brand-lockup__text"><b>Dr. Christian Queiroga</b><small>Cirurgião-Dentista</small></span>
+          </div>
+
+          <a class="hero__place glass" href="#onde-atendo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Atendimento em <strong>Guanhães · MG</strong>
+          </a>
+
+          <h1 class="hero__title">
+            <span class="line"><span class="word">Um</span> <span class="word">novo</span> <span class="word">olhar</span></span>
+            <span class="line"><span class="word">para</span> <span class="word">o</span> <span class="word">seu</span> <em class="word serif-accent">sorriso</em></span>
+          </h1>
+
+          <p class="hero__subtitle">
+            Odontologia estética e reabilitação oral com planejamento digital, tecnologia e um atendimento que começa pela escuta.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#agendar" class="btn btn--primary">
+              Agendar minha avaliação
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#sobre" class="btn btn--ghost">Conheça seu dentista</a>
+          </div>
+
+          <aside class="guide" data-guide>
+            <strong>Orientação — Hero:</strong> é a primeira impressão. Use um <b>título curto</b> com a promessa principal (o que o paciente ganha), um <b>subtítulo</b> que explique como você entrega isso (diferenciais) e <b>um único botão principal</b> levando ao agendamento. Foto: você em destaque, bem iluminado, olhando para a câmera. Ex.: “Sorrisos naturais, planejados para você.”
+          </aside>
+        </div>
+
+        <div class="hero__chips">
+          <div class="chip glass" data-depth="0.6">
+            <span class="chip__num" data-count="2025" data-from="2015" data-plain>2025</span>
+            <span class="chip__label">graduado em Odontologia</span>
+          </div>
+          <div class="chip glass" data-depth="1">
+            <span class="chip__title">Cirurgia oral menor</span>
+            <span class="chip__label">formação complementar · 2026</span>
+          </div>
+          <div class="chip glass" data-depth="0.8">
+            <span class="chip__title"><i class="chip__live"></i>Agenda aberta</span>
+            <span class="chip__label">para novos pacientes</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#beneficios" class="hero__scroll" aria-label="Rolar para baixo">
+        <span>Role</span><i></i>
+      </a>
+    </section>
+
+    <!-- Faixa de tratamentos (marquee CSS) — edite os termos à vontade -->
+    <div class="care-band" aria-label="Tratamentos">
+      <div class="care-band__track">
+        <span>Clínica geral</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+        <span>Prevenção</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+        <span>Cirurgia oral menor</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+        <span>Extração de siso</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+        <span>Restaurações</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+        <span>Clareamento</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+        <span aria-hidden="true">Clínica geral</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+        <span aria-hidden="true">Prevenção</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+        <span aria-hidden="true">Cirurgia oral menor</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+        <span aria-hidden="true">Extração de siso</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+        <span aria-hidden="true">Restaurações</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+        <span aria-hidden="true">Clareamento</span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tooth"/></svg>
+      </div>
+    </div>
+
+    <!-- ============ BENEFÍCIOS ============ -->
+    <section class="section benefits" id="beneficios">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow">Benefícios</span>
+          <h2 class="section__title">Por que cuidar do seu sorriso <em class="serif-accent">comigo</em></h2>
+          <p class="section__lead">Cada detalhe do atendimento foi pensado para que você se sinta seguro, confortável e confiante do início ao fim.</p>
+        </header>
+
+        <aside class="guide" data-guide>
+          <strong>Orientação — Benefícios:</strong> liste de <b>4 a 6 diferenciais</b> do seu atendimento, sempre do ponto de vista do paciente (“o que eu ganho com isso?”). Títulos de até 4 palavras + 1 frase explicando. Ex.: tecnologia usada, conforto, pontualidade, planejamento digital, acompanhamento pós-tratamento.
+        </aside>
+
+        <div class="benefits__grid">
+          <article class="card glass tilt" data-reveal>
+            <div class="card__icon"><svg viewBox="0 0 24 24"><use href="#i-mirror"/></svg></div>
+            <h3>Planejamento digital</h3>
+            <p>Você visualiza o resultado antes de começar, com fotos, escaneamento e simulação do novo sorriso.</p>
+          </article>
+          <article class="card glass tilt" data-reveal>
+            <div class="card__icon"><svg viewBox="0 0 24 24"><use href="#i-tooth-check"/></svg></div>
+            <h3>Atendimento humanizado</h3>
+            <p>Consultas sem pressa, com escuta atenta e explicações claras sobre cada etapa do tratamento.</p>
+          </article>
+          <article class="card glass tilt" data-reveal>
+            <div class="card__icon"><svg viewBox="0 0 24 24"><use href="#i-calendar"/></svg></div>
+            <h3>Pontualidade real</h3>
+            <p>Seu tempo é respeitado: horários organizados para você não esperar na recepção.</p>
+          </article>
+          <article class="card glass tilt" data-reveal>
+            <div class="card__icon"><svg viewBox="0 0 24 24"><use href="#i-tooth-shine"/></svg></div>
+            <h3>Resultados naturais</h3>
+            <p>Estética que respeita o formato do seu rosto e a sua personalidade — nada artificial.</p>
+          </article>
+          <article class="card glass tilt" data-reveal>
+            <div class="card__icon"><svg viewBox="0 0 24 24"><use href="#i-brush"/></svg></div>
+            <h3>Acompanhamento contínuo</h3>
+            <p>Retornos programados e canal direto para tirar dúvidas depois do tratamento.</p>
+          </article>
+          <article class="card glass tilt" data-reveal>
+            <div class="card__icon"><svg viewBox="0 0 24 24"><use href="#i-implant"/></svg></div>
+            <h3>Tecnologia de ponta</h3>
+            <p>Materiais de alta performance e equipamentos modernos para mais conforto e precisão.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUEM SOU EU (scroll horizontal / linha do tempo) ============ -->
+    <section class="about" id="sobre">
+      <div class="about__pin">
+        <div class="about__progress"><span id="aboutProgress"></span></div>
+        <div class="about__track" id="aboutTrack">
+
+          <!-- Painel de abertura -->
+          <div class="about__intro panel">
+            <figure class="about__portrait glass">
+              <img src="assets/img/prazerchristian.jpg" alt="Retrato do Dr. Christian Queiroga" loading="lazy" />
+              <figcaption class="signature">Christian Queiroga</figcaption>
+            </figure>
+            <div class="about__text">
+              <span class="eyebrow">Quem sou eu</span>
+              <h2 class="section__title">Prazer, sou o <em class="serif-accent">Christian</em></h2>
+              <p>Sou cirurgião-dentista apaixonado por devolver às pessoas a vontade de sorrir. Acredito que um tratamento de excelência une técnica, tecnologia e, principalmente, um olhar atento para quem está na cadeira.</p>
+              <p>Meu compromisso é oferecer a cada paciente um plano individual, transparente e confortável — do primeiro contato ao resultado final.</p>
+              <p class="about__cro">CRO-UF 00000</p>
+              <a href="#agendar" class="btn btn--primary">Quero ser atendido pelo Dr. Christian</a>
+
+              <aside class="guide" data-guide>
+                <strong>Orientação — Quem sou eu:</strong> coloque aqui informações sobre a sua <b>trajetória</b>, o que deseja <b>proporcionar aos pacientes</b> (sua missão/propósito) e uma <b>CTA</b>. Escreva em primeira pessoa, de forma próxima. Inclua seu número do CRO (obrigatório pelo CFO). Ao lado, a linha do tempo: role para ver os marcos.
+              </aside>
+            </div>
+            <div class="about__hint">
+              <span>Role para conhecer minha trajetória</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+
+          <!-- Linha do tempo -->
+          <div class="timeline-viewport" id="timelineViewport">
+          <div class="timeline" id="timeline">
+            <div class="timeline__line"><span></span></div>
+
+            <article class="milestone panel">
+              <span class="milestone__year">2022</span>
+              <figure class="milestone__img glass"><img src="assets/img/ingressonocurso.jpg" alt="Início da graduação em Odontologia" loading="lazy" /></figure>
+              <div class="milestone__body">
+                <h3>Início da graduação</h3>
+                <p>Entrei no curso de Odontologia na Universidade XYZ e descobri que cuidar de sorrisos é cuidar de pessoas.</p>
+                <aside class="guide" data-guide>Marco 1 — início: onde começou a graduação e o que despertou sua vocação. Foto: primeiros dias de faculdade, jaleco, clínica-escola.</aside>
+              </div>
+            </article>
+
+            <article class="milestone panel">
+              <span class="milestone__year">2025</span>
+              <figure class="milestone__img glass"><img src="assets/img/placeholders/timeline-02.svg" alt="Formatura em Odontologia" loading="lazy" /></figure>
+              <div class="milestone__body">
+                <h3>Formatura em Odontologia</h3>
+                <p>Concluí a graduação com muita prática clínica e a certeza de querer oferecer um atendimento próximo e cuidadoso.</p>
+                <aside class="guide" data-guide>Marco 2 — conclusão: formatura, experiências marcantes na clínica-escola, estágios ou projetos. Foto: formatura.</aside>
+              </div>
+            </article>
+
+            <article class="milestone panel">
+              <span class="milestone__year">2026</span>
+              <figure class="milestone__img glass"><img src="assets/img/especializacao.jpg" alt="Curso de cirurgia oral menor" loading="lazy" /></figure>
+              <div class="milestone__body">
+                <h3>Curso de Cirurgia Oral Menor</h3>
+                <p>Aprofundei minha formação em extrações, dentes do siso e pequenos procedimentos cirúrgicos, com foco em segurança e conforto.</p>
+                <aside class="guide" data-guide>Marco 3 — curso: nome do curso, instituição e o que ele permite oferecer ao paciente. Foto: hands-on ou certificado.</aside>
+              </div>
+            </article>
+
+            <article class="milestone panel">
+              <span class="milestone__year">Hoje</span>
+              <figure class="milestone__img glass"><img src="assets/img/hojecuidodevoce.jpg" alt="Dr. Christian pronto para atender" loading="lazy" /></figure>
+              <div class="milestone__body">
+                <h3>Pronto para cuidar de você</h3>
+                <p>Agora meu propósito é colocar todo esse preparo a serviço do seu sorriso, com atenção, transparência e carinho em cada consulta.</p>
+                <aside class="guide" data-guide>Marco final — hoje: convite direto ao paciente e seu propósito. Feche com emoção. Foto: você no consultório.</aside>
+              </div>
+            </article>
+
+            <div class="timeline__end panel">
+              <p class="signature signature--lg">Christian Queiroga</p>
+              <p>O próximo capítulo pode ser o seu sorriso.</p>
+              <a href="#agendar" class="btn btn--primary">Agendar avaliação</a>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUADROS ATENDIDOS ============ -->
+    <section class="section treatments" id="tratamentos">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow">Quadros atendidos</span>
+          <h2 class="section__title">Como posso <em class="serif-accent">te ajudar</em></h2>
+          <p class="section__lead">Do cuidado preventivo à transformação completa do sorriso. Passe o mouse para ver cada tratamento.</p>
+        </header>
+
+        <aside class="guide" data-guide>
+          <strong>Orientação — Quadros atendidos:</strong> descreva os <b>problemas/queixas</b> que você resolve com a linguagem do paciente (“dentes amarelados”, “vergonha de sorrir”, “dor ao mastigar”) e o tratamento correspondente. Uma frase por item. Imagens: casos reais (com autorização) ou fotos do procedimento.
+        </aside>
+
+        <ul class="tlist" id="tlist">
+          <li class="tlist__item" data-img="assets/img/placeholders/quadro-01.svg" data-reveal>
+            <span class="tlist__num">01</span>
+            <div class="tlist__main"><h3>Dentes desalinhados, desgastados ou com formato irregular</h3><p>Lentes de contato dental e facetas em resina ou porcelana.</p></div>
+            <span class="tlist__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </li>
+          <li class="tlist__item" data-img="assets/img/placeholders/quadro-02.svg" data-reveal>
+            <span class="tlist__num">02</span>
+            <div class="tlist__main"><h3>Dentes amarelados ou manchados</h3><p>Clareamento dental de consultório e caseiro supervisionado.</p></div>
+            <span class="tlist__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </li>
+          <li class="tlist__item" data-img="assets/img/placeholders/quadro-03.svg" data-reveal>
+            <span class="tlist__num">03</span>
+            <div class="tlist__main"><h3>Perda de um ou mais dentes</h3><p>Implantes dentários e próteses fixas para recuperar função e estética.</p></div>
+            <span class="tlist__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </li>
+          <li class="tlist__item" data-img="assets/img/placeholders/quadro-04.svg" data-reveal>
+            <span class="tlist__num">04</span>
+            <div class="tlist__main"><h3>Dentes tortos ou mordida incorreta</h3><p>Alinhadores invisíveis e ortodontia.</p></div>
+            <span class="tlist__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </li>
+          <li class="tlist__item" data-img="assets/img/placeholders/quadro-05.svg" data-reveal>
+            <span class="tlist__num">05</span>
+            <div class="tlist__main"><h3>Dor de dente e sensibilidade</h3><p>Tratamento de canal, restaurações e atendimento de urgência.</p></div>
+            <span class="tlist__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </li>
+          <li class="tlist__item" data-img="assets/img/placeholders/quadro-06.svg" data-reveal>
+            <span class="tlist__num">06</span>
+            <div class="tlist__main"><h3>Ranger os dentes, dor na mandíbula</h3><p>Diagnóstico e tratamento de bruxismo e DTM com placas e terapias.</p></div>
+            <span class="tlist__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </li>
+          <li class="tlist__item" data-img="assets/img/placeholders/quadro-07.svg" data-reveal>
+            <span class="tlist__num">07</span>
+            <div class="tlist__main"><h3>Manutenção e prevenção</h3><p>Check-up, limpeza profissional e orientação para manter o sorriso saudável.</p></div>
+            <span class="tlist__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </li>
+        </ul>
+      </div>
+      <!-- Imagem que segue o mouse (desktop) -->
+      <div class="tpreview" id="tpreview" aria-hidden="true"><img src="assets/img/placeholders/quadro-01.svg" alt="" /></div>
+    </section>
+
+    <!-- ============ ONDE ATENDO ============ -->
+    <section class="section location" id="onde-atendo">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow">Onde atendo</span>
+          <h2 class="section__title">Um espaço pensado para o seu <em class="serif-accent">conforto</em></h2>
+        </header>
+
+        <aside class="guide" data-guide>
+          <strong>Orientação — Onde atendo:</strong> informe <b>endereço completo, ponto de referência, horários, estacionamento e acessibilidade</b>. Se atender em mais de um local, duplique o cartão. Para o mapa, troque o texto após <code>q=</code> no iframe pelo seu endereço. Foto: fachada ou recepção.
+        </aside>
+
+        <div class="location__grid">
+          <div class="location__card glass tilt" data-reveal>
+            <figure class="location__img"><img src="assets/img/placeholders/consultorio.svg" alt="Consultório do Dr. Christian Queiroga" loading="lazy" /></figure>
+            <div class="location__info">
+              <h3>Consultório Dr. Christian Queiroga</h3>
+              <ul class="info-list">
+                <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Rua Exemplo, 123 — Sala 45, Centro<br/>Guanhães — MG, 39740-000</span></li>
+                <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Seg. a sex.: 8h às 19h<br/>Sábado: 8h às 12h</span></li>
+                <li><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5h10v2"/></svg><span>Estacionamento no local · Acessibilidade</span></li>
+              </ul>
+              <a class="btn btn--ghost btn--sm" href="https://www.google.com/maps/search/?api=1&query=Guanh%C3%A3es+MG" target="_blank" rel="noopener">Como chegar</a>
+            </div>
+          </div>
+          <div class="location__map glass" data-reveal>
+            <iframe title="Mapa do consultório" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Guanh%C3%A3es,+MG&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DEPOIMENTOS ============ -->
+    <section class="section testimonials" id="depoimentos">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow">Depoimentos</span>
+          <h2 class="section__title">Quem sorri, <em class="serif-accent">recomenda</em></h2>
+        </header>
+        <aside class="guide" data-guide>
+          <strong>Orientação — Depoimentos:</strong> use avaliações <b>reais</b> (Google, WhatsApp, Instagram) com autorização do paciente. Prefira textos curtos que citem um <b>sentimento</b> e um <b>resultado</b>. Use nome + inicial do sobrenome e o tratamento realizado. Os textos abaixo são apenas exemplos.
+        </aside>
+      </div>
+
+      <div class="marquee" data-reveal>
+        <div class="marquee__row" data-dir="1">
+          <article class="tcard glass"><span class="stars">★★★★★</span><p>“Sempre tive vergonha de sorrir em fotos. Hoje é a primeira coisa que faço! Atendimento impecável do começo ao fim.”</p><footer><span class="avatar">M</span><div><strong>Mariana S.</strong><small>Lentes de contato dental</small></div></footer></article>
+          <article class="tcard glass"><span class="stars">★★★★★</span><p>“Morria de medo de dentista e o Dr. Christian me deixou totalmente tranquilo. Explicou tudo com muita paciência.”</p><footer><span class="avatar">R</span><div><strong>Rafael M.</strong><small>Tratamento de canal</small></div></footer></article>
+          <article class="tcard glass"><span class="stars">★★★★★</span><p>“O clareamento ficou natural, exatamente como eu queria. Consultório lindo e super pontual.”</p><footer><span class="avatar">C</span><div><strong>Camila R.</strong><small>Clareamento dental</small></div></footer></article>
+          <article class="tcard glass"><span class="stars">★★★★★</span><p>“Profissional atencioso, que se preocupa de verdade com o paciente. Recomendo de olhos fechados.”</p><footer><span class="avatar">J</span><div><strong>João P.</strong><small>Implante</small></div></footer></article>
+        </div>
+        <div class="marquee__row" data-dir="-1">
+          <article class="tcard glass"><span class="stars">★★★★★</span><p>“Ver a simulação do sorriso antes de começar fez toda a diferença. Resultado igualzinho!”</p><footer><span class="avatar">A</span><div><strong>Ana L.</strong><small>Facetas em resina</small></div></footer></article>
+          <article class="tcard glass"><span class="stars">★★★★★</span><p>“Resolveu minha dor na mandíbula que eu tinha há anos. Durmo muito melhor com a placa.”</p><footer><span class="avatar">F</span><div><strong>Fernanda T.</strong><small>Bruxismo / DTM</small></div></footer></article>
+          <article class="tcard glass"><span class="stars">★★★★★</span><p>“Levei minha família toda. Atendimento humano, explicações claras e preço justo.”</p><footer><span class="avatar">L</span><div><strong>Lucas A.</strong><small>Prevenção</small></div></footer></article>
+          <article class="tcard glass"><span class="stars">★★★★★</span><p>“Alinhadores super discretos, ninguém percebia. Acompanhamento excelente em cada etapa.”</p><footer><span class="avatar">B</span><div><strong>Beatriz N.</strong><small>Alinhadores invisíveis</small></div></footer></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DÚVIDAS FREQUENTES ============ -->
+    <section class="section faq" id="duvidas">
+      <div class="container faq__grid">
+        <header class="section__head section__head--left" data-reveal>
+          <span class="eyebrow">Dúvidas frequentes</span>
+          <h2 class="section__title">Ficou alguma <em class="serif-accent">dúvida?</em></h2>
+          <p class="section__lead">Reuni as perguntas que mais recebo no consultório. Se a sua não estiver aqui, é só me chamar.</p>
+          <a href="#agendar" class="btn btn--ghost">Falar com o consultório</a>
+          <aside class="guide" data-guide>
+            <strong>Orientação — Dúvidas:</strong> responda as <b>6 a 8 perguntas</b> que você mais recebe no WhatsApp (convênio, formas de pagamento, dor, duração, garantia). Respostas curtas quebram objeções e aceleram o agendamento.
+          </aside>
+        </header>
+
+        <div class="accordion" data-reveal>
+          <details class="acc glass">
+            <summary>Como funciona a primeira consulta?<i></i></summary>
+            <div class="acc__body"><p>Na avaliação eu escuto suas queixas e expectativas, faço um exame completo, fotos e, se necessário, exames complementares. Ao final você recebe um plano de tratamento claro, com etapas, prazos e investimento.</p></div>
+          </details>
+          <details class="acc glass">
+            <summary>Vocês atendem convênio?<i></i></summary>
+            <div class="acc__body"><p>Exemplo: o atendimento é particular, mas fornecemos recibo e documentação para reembolso junto ao seu plano odontológico.</p></div>
+          </details>
+          <details class="acc glass">
+            <summary>Quais as formas de pagamento?<i></i></summary>
+            <div class="acc__body"><p>Exemplo: Pix, cartão de débito e parcelamento no cartão de crédito. Condições especiais para tratamentos completos.</p></div>
+          </details>
+          <details class="acc glass">
+            <summary>Lentes de contato dental desgastam os dentes?<i></i></summary>
+            <div class="acc__body"><p>Depende de cada caso. Sempre que possível, priorizo técnicas minimamente invasivas. Tudo é avaliado e explicado no planejamento.</p></div>
+          </details>
+          <details class="acc glass">
+            <summary>O tratamento dói?<i></i></summary>
+            <div class="acc__body"><p>Utilizamos anestesia e técnicas de conforto para que você se sinta tranquilo durante todo o procedimento.</p></div>
+          </details>
+          <details class="acc glass">
+            <summary>Quanto tempo dura um clareamento?<i></i></summary>
+            <div class="acc__body"><p>Com bons hábitos e manutenção, o resultado pode durar anos. Indico os cuidados ideais para o seu caso.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AGENDE SUA CONSULTA ============ -->
+    <section class="section booking" id="agendar">
+      <div class="container">
+        <div class="booking__box glass" data-reveal>
+          <div class="booking__glow"></div>
+          <div class="booking__copy">
+            <span class="eyebrow">Agende sua consulta</span>
+            <h2 class="section__title">Seu novo sorriso começa com uma <em class="serif-accent">conversa</em></h2>
+            <p class="section__lead">Preencha os dados e você será direcionado ao WhatsApp do consultório com a mensagem pronta.</p>
+            <ul class="booking__perks">
+              <li>Resposta em até 1 dia útil</li>
+              <li>Avaliação completa e plano personalizado</li>
+              <li>Horários flexíveis</li>
+            </ul>
+            <aside class="guide" data-guide>
+              <strong>Orientação — Agendamento:</strong> reforce o convite com um <b>benefício imediato</b> (avaliação completa, horário flexível) e reduza o esforço: poucos campos. Troque o número do WhatsApp em <code>assets/js/main.js</code> (constante <code>WHATSAPP_NUMBER</code>).
+            </aside>
+          </div>
+
+          <form class="form" id="bookingForm" novalidate>
+            <div class="field"><input id="fName" name="nome" type="text" placeholder=" " required autocomplete="name" /><label for="fName">Seu nome</label></div>
+            <div class="field"><input id="fPhone" name="telefone" type="tel" placeholder=" " required autocomplete="tel" /><label for="fPhone">WhatsApp</label></div>
+            <div class="field field--select">
+              <select id="fTreat" name="tratamento" required>
+                <option value="" disabled selected hidden></option>
+                <option>Avaliação geral</option>
+                <option>Lentes / facetas</option>
+                <option>Clareamento</option>
+                <option>Implantes</option>
+                <option>Alinhadores / ortodontia</option>
+                <option>Dor / urgência</option>
+                <option>Bruxismo / DTM</option>
+              </select>
+              <label for="fTreat">Interesse</label>
+            </div>
+            <div class="field-group" role="radiogroup" aria-label="Melhor período">
+              <span class="field-group__label">Melhor período</span>
+              <label class="pill"><input type="radio" name="periodo" value="Manhã" checked /><span>Manhã</span></label>
+              <label class="pill"><input type="radio" name="periodo" value="Tarde" /><span>Tarde</span></label>
+              <label class="pill"><input type="radio" name="periodo" value="Noite" /><span>Noite</span></label>
+            </div>
+            <button type="submit" class="btn btn--primary btn--block">
+              Agendar pelo WhatsApp
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="form__msg" id="formMsg" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/img/logo-png-christian.png" alt="Dr. Christian Queiroga — Cirurgião-Dentista" width="830" height="110" loading="lazy" />
+          <p>Um novo olhar para o seu sorriso.</p>
+        </div>
+        <nav class="footer__col" aria-label="Rodapé">
+          <h4>Navegação</h4>
+          <a href="#sobre">Quem sou eu</a>
+          <a href="#tratamentos">Tratamentos</a>
+          <a href="#onde-atendo">Onde atendo</a>
+          <a href="#duvidas">Dúvidas</a>
+        </nav>
+        <div class="footer__col">
+          <h4>Contato</h4>
+          <a href="#agendar">(00) 00000-0000</a>
+          <a href="mailto:contato@exemplo.com">contato@exemplo.com</a>
+          <span>Rua Exemplo, 123 — Guanhães/MG</span>
+        </div>
+        <div class="footer__col">
+          <h4>Redes</h4>
+          <div class="socials">
+            <a href="https://instagram.com/christianq" target="_blank" rel="noopener" aria-label="Instagram" class="magnetic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+            <a href="#agendar" aria-label="WhatsApp" class="magnetic"><svg viewBox="0 0 24 24"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1 1 20 11.5z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <aside class="guide" data-guide>
+        <strong>Orientação — Rodapé:</strong> pela norma do CFO, a publicidade deve conter <b>nome do profissional e número do CRO</b> (e do responsável técnico, se for clínica). Inclua contatos, redes sociais e, se quiser, link para política de privacidade (LGPD).
+      </aside>
+      <div class="footer__bottom">
+        <span>© <span id="year"></span> Dr. Christian Queiroga · Cirurgião-Dentista · CRO-UF 00000</span>
+        <a href="#inicio" class="footer__top-link">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

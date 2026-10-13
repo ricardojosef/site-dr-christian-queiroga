@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dr. Christian Queiroga | Cirurgião-Dentista</title>
   <!-- ORIENTAÇÃO: ajuste a descrição com cidade + principais tratamentos (ajuda no Google). -->
-  <meta name="description" content="Dr. Christian Queiroga, cirurgião-dentista. Estética do sorriso, lentes de contato dental, clareamento e reabilitação oral com atendimento humanizado. Agende sua avaliação." />
+  <meta name="description" content="Dr. Christian Queiroga, cirurgião-dentista em Guanhães/MG. Clínica geral, estética do sorriso e cirurgia oral menor com atendimento humanizado. Agende sua avaliação." />
   <meta name="theme-color" content="#08090c" />
   <meta property="og:title" content="Dr. Christian Queiroga | Cirurgião-Dentista" />
   <meta property="og:description" content="Um novo olhar para o seu sorriso. Agende sua avaliação." />
@@ -22,9 +22,9 @@
   <!-- ============ PRELOADER ============ -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader__logo">
-      <img class="preloader__base" src="assets/img/logo-christianq.svg" alt="" />
+      <img class="preloader__base" src="assets/img/logo-christianq-preloader.svg" alt="" />
       <div class="preloader__fill" id="preloaderFill">
-        <img src="assets/img/logo-christianq.svg" alt="" />
+        <img src="assets/img/logo-christianq-preloader.svg" alt="" />
       </div>
     </div>
     <div class="preloader__meta">
@@ -43,7 +43,8 @@
   </button>
 
   <!-- ============ HEADER ============ -->
-  <header class="header" id="header">
+  <!-- O menu fica oculto na hero e aparece a partir da segunda seção (ver main.js) -->
+  <header class="header is-hidden" id="header">
     <nav class="nav glass">
       <a href="#inicio" class="nav__brand" aria-label="Início">
         <img src="assets/img/logo-christianq.svg" alt="" width="30" height="31" />
@@ -57,7 +58,7 @@
         <li><a href="#depoimentos">Depoimentos</a></li>
         <li><a href="#duvidas">Dúvidas</a></li>
       </ul>
-      <a href="#agendar" class="btn btn--primary btn--sm nav__cta magnetic">Agendar</a>
+      <a href="#agendar" class="btn btn--primary btn--sm nav__cta">Agendar</a>
       <button class="nav__burger" id="navBurger" type="button" aria-label="Abrir menu" aria-expanded="false">
         <span></span><span></span>
       </button>
@@ -83,10 +84,14 @@
         <div class="hero__copy">
           <img class="hero__logo" src="assets/img/logo-png-christian.png" alt="Dr. Christian Queiroga — Cirurgião-Dentista" width="830" height="110" />
 
+          <a class="hero__place glass" href="#onde-atendo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Atendimento em <strong>Guanhães · MG</strong>
+          </a>
+
           <h1 class="hero__title">
             <span class="line"><span class="word">Um</span> <span class="word">novo</span> <span class="word">olhar</span></span>
-            <span class="line"><span class="word">para</span> <span class="word">o</span> <span class="word">seu</span></span>
-            <span class="line"><em class="word serif-accent">sorriso</em></span>
+            <span class="line"><span class="word">para</span> <span class="word">o</span> <span class="word">seu</span> <em class="word serif-accent">sorriso</em></span>
           </h1>
 
           <p class="hero__subtitle">
@@ -94,11 +99,11 @@
           </p>
 
           <div class="hero__actions">
-            <a href="#agendar" class="btn btn--primary magnetic">
+            <a href="#agendar" class="btn btn--primary">
               Agendar minha avaliação
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a href="#sobre" class="btn btn--ghost magnetic">Conheça seu dentista</a>
+            <a href="#sobre" class="btn btn--ghost">Conheça seu dentista</a>
           </div>
 
           <aside class="guide" data-guide>
@@ -193,7 +198,7 @@
               <p>Sou cirurgião-dentista apaixonado por devolver às pessoas a vontade de sorrir. Acredito que um tratamento de excelência une técnica, tecnologia e, principalmente, um olhar atento para quem está na cadeira.</p>
               <p>Meu compromisso é oferecer a cada paciente um plano individual, transparente e confortável — do primeiro contato ao resultado final.</p>
               <p class="about__cro">CRO-UF 00000</p>
-              <a href="#agendar" class="btn btn--primary magnetic">Quero ser atendido pelo Dr. Christian</a>
+              <a href="#agendar" class="btn btn--primary">Quero ser atendido pelo Dr. Christian</a>
 
               <aside class="guide" data-guide>
                 <strong>Orientação — Quem sou eu:</strong> coloque aqui informações sobre a sua <b>trajetória</b>, o que deseja <b>proporcionar aos pacientes</b> (sua missão/propósito) e uma <b>CTA</b>. Escreva em primeira pessoa, de forma próxima. Inclua seu número do CRO (obrigatório pelo CFO). Ao lado, a linha do tempo: role para ver os marcos.
@@ -253,7 +258,7 @@
             <div class="timeline__end panel">
               <p class="signature signature--lg">Christian Queiroga</p>
               <p>O próximo capítulo pode ser o seu sorriso.</p>
-              <a href="#agendar" class="btn btn--primary magnetic">Agendar avaliação</a>
+              <a href="#agendar" class="btn btn--primary">Agendar avaliação</a>
             </div>
           </div>
           </div>
@@ -334,16 +339,16 @@
             <div class="location__info">
               <h3>Consultório Dr. Christian Queiroga</h3>
               <ul class="info-list">
-                <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Rua Exemplo, 123 — Sala 45, Centro<br/>Cidade — UF, 00000-000</span></li>
+                <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Rua Exemplo, 123 — Sala 45, Centro<br/>Guanhães — MG, 39740-000</span></li>
                 <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Seg. a sex.: 8h às 19h<br/>Sábado: 8h às 12h</span></li>
                 <li><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5h10v2"/></svg><span>Estacionamento no local · Acessibilidade</span></li>
               </ul>
-              <a class="btn btn--ghost btn--sm magnetic" href="https://www.google.com/maps/search/?api=1&query=Rua+Exemplo+123" target="_blank" rel="noopener">Como chegar</a>
+              <a class="btn btn--ghost btn--sm" href="https://www.google.com/maps/search/?api=1&query=Guanh%C3%A3es+MG" target="_blank" rel="noopener">Como chegar</a>
             </div>
           </div>
           <div class="location__map glass" data-reveal>
             <iframe title="Mapa do consultório" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Avenida+Paulista,+S%C3%A3o+Paulo&output=embed"></iframe>
+              src="https://www.google.com/maps?q=Guanh%C3%A3es,+MG&output=embed"></iframe>
           </div>
         </div>
       </div>
@@ -384,7 +389,7 @@
           <span class="eyebrow">Dúvidas frequentes</span>
           <h2 class="section__title">Ficou alguma <em class="serif-accent">dúvida?</em></h2>
           <p class="section__lead">Reuni as perguntas que mais recebo no consultório. Se a sua não estiver aqui, é só me chamar.</p>
-          <a href="#agendar" class="btn btn--ghost magnetic">Falar com o consultório</a>
+          <a href="#agendar" class="btn btn--ghost">Falar com o consultório</a>
           <aside class="guide" data-guide>
             <strong>Orientação — Dúvidas:</strong> responda as <b>6 a 8 perguntas</b> que você mais recebe no WhatsApp (convênio, formas de pagamento, dor, duração, garantia). Respostas curtas quebram objeções e aceleram o agendamento.
           </aside>
@@ -460,7 +465,7 @@
               <label class="pill"><input type="radio" name="periodo" value="Tarde" /><span>Tarde</span></label>
               <label class="pill"><input type="radio" name="periodo" value="Noite" /><span>Noite</span></label>
             </div>
-            <button type="submit" class="btn btn--primary btn--block magnetic">
+            <button type="submit" class="btn btn--primary btn--block">
               Agendar pelo WhatsApp
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </button>
@@ -490,7 +495,7 @@
           <h4>Contato</h4>
           <a href="#agendar">(00) 00000-0000</a>
           <a href="mailto:contato@exemplo.com">contato@exemplo.com</a>
-          <span>Rua Exemplo, 123 — Cidade/UF</span>
+          <span>Rua Exemplo, 123 — Guanhães/MG</span>
         </div>
         <div class="footer__col">
           <h4>Redes</h4>
