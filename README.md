@@ -5,10 +5,14 @@ Landing page estática (HTML + CSS + JS, sem build). Abra `index.html` com um se
 ## Estrutura
 
 ```
-index.html                     versão principal (escura)
+index-producao.html            VERSÃO PARA PUBLICAR (sem orientações, conteúdo definitivo)
+index.html                     versão principal (escura) — rascunho com orientações
 index-claro.html               versão clara com elementos odontológicos (usa style.css + claro.css)
 quadros-atendidos-versoes.html 2 alternativas para a seção "Quadros atendidos"
 assets/css/claro.css           camada de estilos da versão clara
+assets/css/producao.css        camada de estilos da versão de produção
+assets/img/quadros/            fotos dos quadros atendidos (Unsplash, ver CREDITOS.txt)
+assets/img/arcada.svg          ornamento da arcada dentária
 assets/css/style.css     estilos (cores em :root)
 assets/js/main.js        animações GSAP, preloader, formulário
 assets/img/              logos

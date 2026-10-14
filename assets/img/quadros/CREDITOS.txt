@@ -1,0 +1,11 @@
+Fotos do Unsplash (Licença Unsplash: uso livre, comercial inclusive, sem atribuição obrigatória)
+https://unsplash.com/license
+
+limpeza-raspagem.jpg  https://images.unsplash.com/photo-1606811971618-4486d14f3f99
+restauracoes.jpg      https://images.unsplash.com/photo-1663755489920-5e09f66d011a
+canal.jpg             https://images.unsplash.com/photo-1657470179447-0f5aa16daa91
+cirurgias.jpg         https://images.unsplash.com/photo-1588776814546-daab30f310ce
+protese.jpg           https://images.unsplash.com/photo-1562330743-fbc6ef07ca78
+clareamento.jpg       https://images.unsplash.com/photo-1684607633080-df59e6874367
+
+Recortadas em 1000 x 1250 px (4:5). Para trocar por fotos próprias, mantenha nome e proporção.

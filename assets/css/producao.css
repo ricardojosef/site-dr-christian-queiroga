@@ -1,0 +1,217 @@
+/* =========================================================
+   Versão de produção (index-producao.html) — camada sobre style.css
+   ========================================================= */
+
+/* ---------- Menu: só a logo do dente à esquerda ---------- */
+.nav__brand img { width: 36px; }
+
+/* ---------- Benefícios: 4 itens em uma linha ---------- */
+.benefits__grid--4 { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.benefits__grid--4 .card { padding: 30px 24px 32px; }
+@media (max-width: 1100px) { .benefits__grid--4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px)  { .benefits__grid--4 { grid-template-columns: 1fr; } }
+
+/* ---------- Quadros atendidos: imagem fixa + scroll ---------- */
+.split { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr); gap: clamp(30px, 6vw, 90px); align-items: start; }
+.split__media {
+  position: sticky; top: 110px;
+  height: min(620px, calc(100vh - 160px));
+  border-radius: 28px; padding: 10px;
+}
+.split__frame { position: relative; width: 100%; height: 100%; border-radius: 20px; overflow: hidden; }
+.split__frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; clip-path: inset(100% 0 0 0); }
+.split__frame img.is-active { clip-path: inset(0 0 0 0); }
+.split__frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(7, 8, 11, 0.85)); pointer-events: none; z-index: 3; }
+.split__counter {
+  position: absolute; z-index: 4; left: 34px; bottom: 30px;
+  display: flex; align-items: baseline; gap: 6px;
+  font-family: var(--font-serif); color: var(--white);
+}
+.split__counter b { font-size: 3.4rem; font-weight: 500; line-height: 1; }
+.split__counter span { color: var(--muted); font-size: 1.2rem; }
+.split__bar { position: absolute; z-index: 4; right: 30px; bottom: 40px; width: 120px; height: 2px; background: rgba(255, 255, 255, 0.2); border-radius: 2px; overflow: hidden; }
+.split__bar i { display: block; height: 100%; background: var(--blue-light); transform-origin: left; transform: scaleX(0); }
+
+.split__list { display: grid; }
+.sitem {
+  min-height: 46vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--line);
+  opacity: 0.28;
+  transition: opacity 0.6s var(--ease);
+}
+.sitem:first-child { padding-top: 0; }
+.sitem:last-child { border-bottom: 0; }
+.sitem.is-active { opacity: 1; }
+.sitem__num { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 12px; }
+.sitem h3 { font-size: clamp(1.5rem, 3vw, 2.4rem); line-height: 1.15; color: var(--white); font-weight: 600; letter-spacing: -0.01em; }
+.sitem p { color: var(--muted); margin-top: 12px; max-width: 480px; }
+.sitem ul { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.sitem li { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); font-size: 0.8rem; color: var(--text); }
+.sitem__thumb { display: none; }
+
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; }
+  .split__media { display: none; }
+  .sitem { min-height: 0; opacity: 1; padding: 26px 0; }
+  .sitem__thumb { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 16px; margin-bottom: 18px; }
+}
+
+/* ---------- Onde atendo: cartão da clínica ---------- */
+.location__card { display: flex; flex-direction: column; }
+.location__info { padding: 26px clamp(14px, 2vw, 22px) 18px; }
+.location__info h3 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.1; }
+.location__tag { display: inline-block; margin-bottom: 12px; font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--blue-light); }
+.location__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* =========================================================
+   Identidade odontológica — detalhes sutis
+   ========================================================= */
+
+/* 1. Rótulos das seções: um dentinho no lugar do traço */
+.eyebrow::before {
+  width: 16px; height: 16px; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-width='1.8' d='M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-width='1.8' d='M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* 2. Arcada dentária em traço fino ao fundo de algumas seções */
+.benefits { overflow: hidden; }
+.benefits::after,
+.faq::before,
+.booking__box::after {
+  content: ""; position: absolute; pointer-events: none; z-index: -1;
+  background: url("../img/arcada.svg") center / contain no-repeat;
+}
+.benefits::after { width: min(980px, 120vw); aspect-ratio: 600 / 470; left: 50%; top: 40px; transform: translateX(-50%); opacity: 0.11; }
+.faq { overflow: hidden; }
+.faq::before { width: 520px; aspect-ratio: 600 / 470; right: -140px; bottom: -60px; transform: rotate(-18deg); opacity: 0.08; }
+.booking__box::after { width: 460px; aspect-ratio: 600 / 470; right: -110px; bottom: -120px; transform: rotate(180deg); opacity: 0.12; z-index: 0; }
+.booking__copy, .form { position: relative; z-index: 1; }
+
+/* 3. Ícones dos benefícios em círculo, como um "botão" de consultório */
+.card__icon { border-radius: 50%; width: 58px; height: 58px; box-shadow: 0 0 0 6px rgba(89, 111, 152, 0.1); }
+.card__icon svg { width: 27px; height: 27px; }
+
+/* 4. Marcadores da linha do tempo em forma de dente */
+.milestone::after {
+  width: 22px; height: 22px; border: 0; border-radius: 0;
+  background: var(--blue-light);
+  box-shadow: none;
+  filter: drop-shadow(0 0 8px rgba(142, 162, 200, 0.6));
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 2.5C5.2 2.5 3.5 4.6 3.5 7.4c0 2.2.9 3.6 1.4 5.6.7 2.8.8 8.5 3 8.5 1.9 0 1.8-5.2 4.1-5.2s2.2 5.2 4.1 5.2c2.2 0 2.3-5.7 3-8.5.5-2 1.4-3.4 1.4-5.6 0-2.8-1.7-4.9-4.5-4.9-1.9 0-2.6 1-4 1s-2.1-1-4-1z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* 5. Brilho de "dente limpo" na palavra sorriso */
+.hero__title .serif-accent { position: relative; }
+.hero__title .serif-accent::after {
+  content: "✦";
+  position: absolute; right: -0.32em; top: 0.08em;
+  font-family: var(--font-sans); font-size: 0.26em; line-height: 1;
+  color: #e3eaf8; -webkit-text-fill-color: #e3eaf8;
+  text-shadow: 0 0 12px rgba(200, 214, 240, 0.9);
+  animation: sparkle 3.4s ease-in-out infinite;
+}
+.hero__title .line:has(.serif-accent) { padding-right: 0.4em; }
+@keyframes sparkle {
+  0%, 60%, 100% { opacity: 0.25; transform: scale(0.6) rotate(0deg); }
+  75% { opacity: 1; transform: scale(1.15) rotate(45deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__title .serif-accent::after { animation: none; opacity: 0.8; }
+}
+
+/* ---------- Linha do tempo: enquadra as fotos mais pelo topo (não corta a testa) ---------- */
+.milestone__img--top img { object-position: 50% 18%; }
+
+/* ---------- Hero no mobile: logo e selo centralizados, sem o brilho azul ao fundo ---------- */
+@media (max-width: 768px) {
+  .hero__logo { margin-left: auto; margin-right: auto; }
+  .hero__place { display: flex; width: fit-content; margin-left: auto; margin-right: auto; }
+  .hero__orb { display: none; }
+  .hero__title { text-align: center; }
+  .hero__subtitle { text-align: center; margin-left: auto; margin-right: auto; }
+  /* compensa o espaço reservado à direita para o brilho ✦, para o centro ficar exato */
+  .hero__title .line:has(.serif-accent) { padding-left: 0.4em; }
+}
+
+/* ---------- Crédito do desenvolvedor (bem discreto, no fim da página) ---------- */
+.footer__credit {
+  margin-top: 48px;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px;
+  font-size: 0.7rem; letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.28);
+}
+.footer__credit a { display: inline-flex; align-items: center; gap: 4px; color: rgba(255, 255, 255, 0.4); transition: color 0.3s; }
+.footer__credit a:hover { color: var(--blue-light); }
+.footer__credit svg { width: 11px; height: 11px; fill: currentColor; stroke: none; }
+
+/* ---------- Botão flutuante do WhatsApp ---------- */
+.wa-float {
+  position: fixed; right: 22px; bottom: 22px; z-index: 85;
+  display: flex; align-items: flex-end; gap: 14px;
+  transition: opacity 0.4s, transform 0.4s var(--ease);
+}
+body.is-loading .wa-float { opacity: 0; transform: translateY(20px); pointer-events: none; }
+.wa-float__btn {
+  position: relative;
+  flex: none;
+  width: 60px; height: 60px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 12px 30px -8px rgba(37, 211, 102, 0.55), 0 4px 12px rgba(0, 0, 0, 0.35);
+  transition: transform 0.35s var(--ease), background 0.3s;
+}
+.wa-float__btn svg { width: 30px; height: 30px; fill: currentColor; stroke: none; }
+.wa-float__btn:hover { transform: scale(1.07); background: #20bd5a; }
+/* anel pulsando */
+.wa-float__btn::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: waPulse 2.4s ease-out infinite;
+}
+@keyframes waPulse { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(1.6); opacity: 0; } }
+
+.wa-float__bubble {
+  position: relative;
+  max-width: 250px;
+  margin-bottom: 8px;
+  padding: 14px 34px 14px 16px;
+  border-radius: 16px 16px 4px 16px;
+  background: #ffffff;
+  color: #1c2233;
+  font-size: 0.84rem; line-height: 1.45;
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.55);
+  display: flex; flex-direction: column; gap: 2px;
+  opacity: 0; transform: translateY(10px) scale(0.92); transform-origin: bottom right;
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+}
+.wa-float__bubble strong { font-weight: 700; color: #111827; }
+.wa-float__bubble.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+/* "rabinho" do balão apontando para o botão */
+.wa-float__bubble::after {
+  content: ""; position: absolute; right: -6px; bottom: 10px;
+  width: 14px; height: 14px; background: #fff;
+  transform: rotate(45deg); border-radius: 2px;
+}
+.wa-float__close {
+  position: absolute; top: 6px; right: 8px;
+  width: 22px; height: 22px;
+  border: 0; border-radius: 50%; background: transparent;
+  font-size: 1.1rem; line-height: 1; color: #8a93a6; cursor: pointer;
+}
+.wa-float__close:hover { background: #f1f3f7; color: #1c2233; }
+
+@media (max-width: 768px) {
+  .wa-float { right: 14px; bottom: 14px; gap: 10px; }
+  .wa-float__btn { width: 54px; height: 54px; }
+  .wa-float__btn svg { width: 27px; height: 27px; }
+  .wa-float__bubble { max-width: 210px; font-size: 0.78rem; }
+}
+@media (prefers-reduced-motion: reduce) { .wa-float__btn::before { animation: none; } }

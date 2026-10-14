@@ -3,7 +3,7 @@
    ========================================================= */
 
 // Troque pelo WhatsApp do consultório: DDI + DDD + número, apenas dígitos
-const WHATSAPP_NUMBER = '5500000000000';
+const WHATSAPP_NUMBER = '5533933001306';
 
 (() => {
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
@@ -24,6 +24,8 @@ const WHATSAPP_NUMBER = '5500000000000';
   document.documentElement.classList.add('js');
   gsap.registerPlugin(ScrollTrigger);
   if (window.ScrollToPlugin) gsap.registerPlugin(ScrollToPlugin);
+  // As páginas compartilham este arquivo e nem todas têm todos os elementos
+  gsap.config({ nullTargetWarn: false });
 
   /* ---------------- Smooth scroll (Lenis) ---------------- */
   let lenis = null;
@@ -331,8 +333,47 @@ const WHATSAPP_NUMBER = '5500000000000';
   mm.add('(min-width: 901px)', () => buildHorizontal($('#aboutTrack'), $('.about__pin'), [90, 45]));
   mm.add('(max-width: 900px)', () => buildHorizontal($('#timeline'), $('#timelineViewport'), [100, 25]));
 
+  /* ---------------- Quadros atendidos (versão split): imagem fixa sincronizada ao scroll ---------------- */
+  if ($('#split')) {
+    mm.add('(min-width: 901px)', () => {
+      const items = $$('.sitem');
+      const imgs = $$('#splitFrame img');
+      const num = $('#splitNum');
+      const bar = $('#splitBar');
+      let current = 0;
+
+      const setActive = (i) => {
+        if (i === current) return;
+        const down = i > current;
+        items.forEach((it, k) => it.classList.toggle('is-active', k === i));
+        // a nova imagem entra por cima, de baixo ou de cima conforme a direção do scroll
+        gsap.set(imgs, { zIndex: 0 });
+        gsap.set(imgs[current], { zIndex: 1 });
+        gsap.fromTo(imgs[i],
+          { clipPath: down ? 'inset(100% 0 0 0)' : 'inset(0 0 100% 0)', scale: 1.15, zIndex: 2 },
+          { clipPath: 'inset(0% 0 0% 0)', scale: 1, duration: 0.9, ease: 'expo.out', overwrite: true });
+        num.textContent = String(i + 1).padStart(2, '0');
+        current = i;
+      };
+
+      items.forEach((it, i) => {
+        ScrollTrigger.create({
+          trigger: it, start: 'top 55%', end: 'bottom 55%',
+          onEnter: () => setActive(i),
+          onEnterBack: () => setActive(i),
+        });
+      });
+      ScrollTrigger.create({
+        trigger: '.split__list', start: 'top 55%', end: 'bottom 55%',
+        onUpdate: (self) => gsap.set(bar, { scaleX: self.progress }),
+      });
+
+      return () => items.forEach((it, k) => it.classList.toggle('is-active', k === 0));
+    });
+  }
+
   /* ---------------- Quadros atendidos: imagem seguindo o mouse ---------------- */
-  if (finePointer) {
+  if (finePointer && $('#tlist')) {
     const list = $('#tlist');
     const preview = $('#tpreview');
     const pImg = $('img', preview);
@@ -405,7 +446,7 @@ const WHATSAPP_NUMBER = '5500000000000';
     return tween;
   });
   // Acelera o marquee conforme a velocidade do scroll
-  ScrollTrigger.create({
+  if (marquees.length) ScrollTrigger.create({
     trigger: '.testimonials', start: 'top bottom', end: 'bottom top',
     onUpdate: (self) => {
       const boost = 1 + Math.min(4, Math.abs(self.getVelocity()) / 500);
@@ -477,22 +518,47 @@ const WHATSAPP_NUMBER = '5500000000000';
     const year = $('#year');
     if (year) year.textContent = new Date().getFullYear();
 
-    // Mostrar/ocultar orientações
+    // Mostrar/ocultar orientações (só existe nas versões de rascunho)
     const toggle = $('#guideToggle');
-    const applyGuides = (on) => {
-      body.classList.toggle('show-guides', on);
-      toggle.setAttribute('aria-pressed', String(on));
-      $('strong', toggle).textContent = on ? 'ON' : 'OFF';
-    };
-    let saved = null;
-    try { saved = localStorage.getItem('cq-guides'); } catch (e) { /* sem storage */ }
-    applyGuides(saved !== 'off');
-    toggle.addEventListener('click', () => {
-      const on = !body.classList.contains('show-guides');
-      applyGuides(on);
-      try { localStorage.setItem('cq-guides', on ? 'on' : 'off'); } catch (e) { /* sem storage */ }
-      window.ScrollTrigger?.refresh();
-    });
+    if (toggle) {
+      const applyGuides = (on) => {
+        body.classList.toggle('show-guides', on);
+        toggle.setAttribute('aria-pressed', String(on));
+        $('strong', toggle).textContent = on ? 'ON' : 'OFF';
+      };
+      let saved = null;
+      try { saved = localStorage.getItem('cq-guides'); } catch (e) { /* sem storage */ }
+      applyGuides(saved !== 'off');
+      toggle.addEventListener('click', () => {
+        const on = !body.classList.contains('show-guides');
+        applyGuides(on);
+        try { localStorage.setItem('cq-guides', on ? 'on' : 'off'); } catch (e) { /* sem storage */ }
+        window.ScrollTrigger?.refresh();
+      });
+    }
+
+    // Balão do botão flutuante do WhatsApp: aparece depois do preloader; fechado, não volta na mesma visita
+    const waBubble = $('#waBubble');
+    if (waBubble) {
+      let dismissed = false;
+      try { dismissed = sessionStorage.getItem('cq-wa-bubble') === 'off'; } catch (e) { /* sem storage */ }
+      const hideBubble = () => {
+        waBubble.classList.remove('is-visible');
+        try { sessionStorage.setItem('cq-wa-bubble', 'off'); } catch (e) { /* sem storage */ }
+      };
+      if (!dismissed) {
+        const showLater = () => setTimeout(() => waBubble.classList.add('is-visible'), 2500);
+        if (!body.classList.contains('is-loading')) showLater();
+        else {
+          const obs = new MutationObserver(() => {
+            if (!body.classList.contains('is-loading')) { obs.disconnect(); showLater(); }
+          });
+          obs.observe(body, { attributes: true, attributeFilter: ['class'] });
+        }
+      }
+      $('#waClose').addEventListener('click', hideBubble);
+      $('.wa-float__btn').addEventListener('click', hideBubble);
+    }
 
     // Menu mobile
     const burger = $('#navBurger');
